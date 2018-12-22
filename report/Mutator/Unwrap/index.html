@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>Unwrap - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,53 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../../">All files</a></li><li class="breadcrumb-item active"><a href="../">Mutator</a></li><li class="breadcrumb-item active">Unwrap</li>
+			<li class="breadcrumb-item "><a href="../../">All files</a></li>
+<li class="breadcrumb-item "><a href="../">Mutator</a></li>
+<li class="breadcrumb-item active">Unwrap</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>Unwrap</td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">59</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -56,9 +78,25 @@
     <th class="text-center">59</th>
 </tr>
 <tr>
-    <td><a href="AbstractUnwrapMutator.php.html">AbstractUnwrapMutator.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="AbstractUnwrapMutator.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">AbstractUnwrapMutator.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">9</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -69,9 +107,25 @@
     <th class="text-center">9</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayChangeKeyCase.php.html">UnwrapArrayChangeKeyCase.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayChangeKeyCase.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayChangeKeyCase.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -82,9 +136,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayChunk.php.html">UnwrapArrayChunk.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayChunk.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayChunk.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -95,9 +165,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayColumn.php.html">UnwrapArrayColumn.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayColumn.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayColumn.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -108,9 +194,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayCombine.php.html">UnwrapArrayCombine.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayCombine.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayCombine.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -121,9 +223,25 @@
     <th class="text-center">4</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayDiff.php.html">UnwrapArrayDiff.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayDiff.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayDiff.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -134,9 +252,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayDiffAssoc.php.html">UnwrapArrayDiffAssoc.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayDiffAssoc.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayDiffAssoc.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -147,9 +281,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayDiffKey.php.html">UnwrapArrayDiffKey.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayDiffKey.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayDiffKey.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -160,9 +310,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayDiffUassoc.php.html">UnwrapArrayDiffUassoc.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayDiffUassoc.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayDiffUassoc.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -173,9 +339,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayDiffUkey.php.html">UnwrapArrayDiffUkey.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayDiffUkey.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayDiffUkey.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -186,9 +368,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayFilter.php.html">UnwrapArrayFilter.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayFilter.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayFilter.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -199,9 +397,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayFlip.php.html">UnwrapArrayFlip.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayFlip.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayFlip.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -212,9 +426,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayIntersectUassoc.php.html">UnwrapArrayIntersectUassoc.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayIntersectUassoc.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayIntersectUassoc.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">5</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -225,9 +455,25 @@
     <th class="text-center">5</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayKeys.php.html">UnwrapArrayKeys.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayKeys.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayKeys.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -238,9 +484,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayMap.php.html">UnwrapArrayMap.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayMap.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayMap.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">5</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -251,9 +513,25 @@
     <th class="text-center">5</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayReduce.php.html">UnwrapArrayReduce.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayReduce.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayReduce.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -264,9 +542,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayReverse.php.html">UnwrapArrayReverse.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayReverse.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayReverse.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -277,9 +571,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayUnique.php.html">UnwrapArrayUnique.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayUnique.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayUnique.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -290,9 +600,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapArrayValues.php.html">UnwrapArrayValues.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapArrayValues.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapArrayValues.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -303,9 +629,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapStrRepeat.php.html">UnwrapStrRepeat.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapStrRepeat.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapStrRepeat.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -316,9 +658,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapStrToLower.php.html">UnwrapStrToLower.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapStrToLower.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapStrToLower.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -329,9 +687,25 @@
     <th class="text-center">2</th>
 </tr>
 <tr>
-    <td><a href="UnwrapStrToUpper.php.html">UnwrapStrToUpper.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="UnwrapStrToUpper.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">UnwrapStrToUpper.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -350,11 +724,24 @@
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

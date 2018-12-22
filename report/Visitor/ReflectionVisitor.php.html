@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>ReflectionVisitor.php - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,53 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../index.html">All files</a></li><li class="breadcrumb-item active"><a href="index.html">Visitor</a></li><li class="breadcrumb-item active">ReflectionVisitor.php</li>
+			<li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+<li class="breadcrumb-item "><a href="index.html">Visitor</a></li>
+<li class="breadcrumb-item active">ReflectionVisitor.php</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>ReflectionVisitor.php</td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" style="width: 84%;">84%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">84</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">84%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">84%</td>
     <td class="text-center">21</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
@@ -60,15 +82,209 @@
     </div>
 </div>
 
-            
+            <div class="row">
+    <div class="col-lg-7">
+        <pre><code class="lang-php">&lt;?php
+/**
+ * This code is licensed under the BSD 3-Clause License.
+ *
+ * Copyright (c) 2017-2018, Maks Rafalko
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+declare(strict_types=1);
+
+namespace Infection\Visitor;
+
+use PhpParser\Node;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
+
+/**
+ * @internal
+ */
+final class ReflectionVisitor extends NodeVisitorAbstract
+{
+    public const REFLECTION_CLASS_KEY = 'reflectionClass';
+    public const IS_INSIDE_FUNCTION_KEY = 'isInsideFunction';
+    public const IS_ON_FUNCTION_SIGNATURE = 'isOnFunctionSignature';
+    public const FUNCTION_SCOPE_KEY = 'functionScope';
+    public const FUNCTION_NAME = 'functionName';
+
+    private $scopeStack = [];
+
+    /**
+     * @var \ReflectionClass|null
+     */
+    private $reflectionClass;
+
+    /**
+     * @var string|null
+     */
+    private $methodName;
+
+    public function beforeTraverse(array $nodes): void
+    {
+        $this-&gt;scopeStack = [];
+        $this-&gt;reflectionClass = null;
+        $this-&gt;methodName = null;
+    }
+
+    public function enterNode(Node $node)
+    {
+        if ($node instanceof Node\Stmt\ClassLike &amp;&amp; isset($node-&gt;fullyQualifiedClassName)) {
+            $this-&gt;reflectionClass = new \ReflectionClass($node-&gt;fullyQualifiedClassName-&gt;toString());
+        }
+
+        if ($node instanceof Node\Stmt\ClassMethod) {
+            $this-&gt;methodName = $node-&gt;name-&gt;name;
+        }
+
+        $isInsideFunction = $this-&gt;isInsideFunction($node);
+
+        if ($isInsideFunction) {
+            $node-&gt;setAttribute(self::IS_INSIDE_FUNCTION_KEY, true);
+        } elseif ($node instanceof Node\Stmt\Function_) {
+            return NodeTraverser::DONT_TRAVERSE_CURRENT_AND_CHILDREN;
+        }
+
+        if ($this-&gt;isPartOfFunctionSignature($node)) {
+            $node-&gt;setAttribute(self::IS_ON_FUNCTION_SIGNATURE, true);
+        }
+
+        if ($this-&gt;isFunctionLikeNode($node)) {
+            $this-&gt;scopeStack[] = $node;
+            $node-&gt;setAttribute(self::REFLECTION_CLASS_KEY, $this-&gt;reflectionClass);
+            $node-&gt;setAttribute(self::FUNCTION_NAME, $this-&gt;methodName);
+        } elseif ($isInsideFunction) {
+            $node-&gt;setAttribute(self::FUNCTION_SCOPE_KEY, $this-&gt;scopeStack[\count($this-&gt;scopeStack) - 1]);
+            $node-&gt;setAttribute(self::REFLECTION_CLASS_KEY, $this-&gt;reflectionClass);
+            $node-&gt;setAttribute(self::FUNCTION_NAME, $this-&gt;methodName);
+        }
+    }
+
+    public function leaveNode(Node $node): void
+    {
+        if ($this-&gt;isFunctionLikeNode($node)) {
+            array_pop($this-&gt;scopeStack);
+        }
+    }
+
+    private function isPartOfFunctionSignature(Node $node): bool
+    {
+        if ($this-&gt;isFunctionLikeNode($node)) {
+            return true;
+        }
+
+        if (!$node-&gt;hasAttribute(ParentConnectorVisitor::PARENT_KEY)) {
+            return false;
+        }
+
+        $parent = $node-&gt;getAttribute(ParentConnectorVisitor::PARENT_KEY);
+
+        return $parent instanceof Node\Param || $node instanceof Node\Param;
+    }
+
+    /**
+     * Recursively determine whether the node is inside the function
+     */
+    private function isInsideFunction(Node $node): bool
+    {
+        if (!$node-&gt;hasAttribute(ParentConnectorVisitor::PARENT_KEY)) {
+            return false;
+        }
+
+        $parent = $node-&gt;getAttribute(ParentConnectorVisitor::PARENT_KEY);
+
+        if ($parent-&gt;getAttribute(self::IS_INSIDE_FUNCTION_KEY)) {
+            return true;
+        }
+
+        if ($this-&gt;isFunctionLikeNode($parent)) {
+            return true;
+        }
+
+        return $this-&gt;isInsideFunction($parent);
+    }
+
+    private function isFunctionLikeNode(Node $node): bool
+    {
+        if ($node instanceof Node\Stmt\ClassMethod) {
+            return true;
+        }
+
+        if ($node instanceof Node\Expr\Closure) {
+            return true;
+        }
+
+        return false;
+    }
+}
+</code></pre>
+    </div>
+     <div class="col-lg-5 table-padding">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mutator</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Original</th>
+            <th>Replacement</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</div>
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

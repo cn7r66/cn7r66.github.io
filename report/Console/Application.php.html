@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>Application.php - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,53 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../index.html">All files</a></li><li class="breadcrumb-item active"><a href="index.html">Console</a></li><li class="breadcrumb-item active">Application.php</li>
+			<li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+<li class="breadcrumb-item "><a href="index.html">Console</a></li>
+<li class="breadcrumb-item active">Application.php</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>Application.php</td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">80%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">29</td>
     <td class="text-center">0</td>
@@ -60,15 +82,241 @@
     </div>
 </div>
 
-            
+            <div class="row">
+    <div class="col-lg-7">
+        <pre><code class="lang-php">&lt;?php
+/**
+ * This code is licensed under the BSD 3-Clause License.
+ *
+ * Copyright (c) 2017-2018, Maks Rafalko
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+declare(strict_types=1);
+
+namespace Infection\Console;
+
+use Composer\XdebugHandler\XdebugHandler;
+use Infection\Command;
+use Infection\Console\ConsoleOutput as InfectionConsoleOutput;
+use PackageVersions\Versions;
+use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
+
+/**
+ * @internal
+ */
+final class Application extends BaseApplication
+{
+    private const NAME = 'Infection - PHP Mutation Testing Framework';
+    private const VERSION = '@package_version@';
+
+    private const INFECTION_PREFIX = 'INFECTION';
+
+    private const LOGO = &lt;&lt;&lt;'ASCII'
+     ____      ____          __  _
+    /  _/___  / __/__  _____/ /_(_)___  ____
+    / // __ \/ /_/ _ \/ ___/ __/ / __ \/ __ \
+  _/ // / / / __/  __/ /__/ /_/ / /_/ / / / /
+ /___/_/ /_/_/  \___/\___/\__/_/\____/_/ /_/
+
+ASCII;
+
+    /**
+     * @var InfectionContainer
+     */
+    private $container;
+
+    /**
+     * @var InfectionConsoleOutput
+     */
+    private $consoleOutput;
+
+    public function __construct(InfectionContainer $container, string $name = self::NAME, string $version = self::VERSION)
+    {
+        parent::__construct($name, $version);
+
+        $this-&gt;container = $container;
+        $this-&gt;setDefaultCommand('run');
+    }
+
+    public function run(InputInterface $input = null, OutputInterface $output = null)
+    {
+        if (null === $input) {
+            $input = new ArgvInput();
+        }
+
+        if (null === $output) {
+            $output = new ConsoleOutput();
+        }
+
+        $this-&gt;consoleOutput = new InfectionConsoleOutput(new SymfonyStyle($input, $output));
+
+        if ($input-&gt;hasParameterOption(['--quiet', '-q'], true)) {
+            $output-&gt;setVerbosity(OutputInterface::VERBOSITY_QUIET);
+        }
+
+        $this-&gt;logRunningWithDebugger();
+
+        if (!$this-&gt;isAutoExitEnabled()) {
+            // When we're not in control of exit codes, that means it's the caller
+            // responsibility to disable xdebug if it isn't needed. As of writing
+            // that's only the case during E2E testing. Show a warning nevertheless.
+
+            $this-&gt;consoleOutput-&gt;logNotInControlOfExitCodes();
+
+            return parent::run($input, $output);
+        }
+
+        (new XdebugHandler(self::INFECTION_PREFIX, '--ansi'))
+            -&gt;setPersistent()
+            -&gt;check();
+
+        return parent::run($input, $output);
+    }
+
+    public function doRun(InputInterface $input, OutputInterface $output)
+    {
+        $this-&gt;getContainer()-&gt;buildDynamicDependencies($input);
+
+        $output-&gt;writeln(self::LOGO);
+
+        return parent::doRun($input, $output);
+    }
+
+    public function getLongVersion()
+    {
+        if (self::VERSION === $this-&gt;getVersion()) {
+            $version = Versions::getVersion('infection/infection');
+
+            return sprintf('%s &lt;info&gt;%s&lt;/info&gt;', $this-&gt;getName(), explode('@', $version)[0]);
+        }
+
+        return parent::getLongVersion();
+    }
+
+    public function getContainer(): InfectionContainer
+    {
+        return $this-&gt;container;
+    }
+
+    public function getConsoleOutput(): InfectionConsoleOutput
+    {
+        return $this-&gt;consoleOutput;
+    }
+
+    protected function getDefaultCommands()
+    {
+        $commands = array_merge(parent::getDefaultCommands(), [
+            new Command\ConfigureCommand(),
+            new Command\InfectionCommand(),
+        ]);
+
+        if (0 === strpos(__FILE__, 'phar:')) {
+            $commands[] = new Command\SelfUpdateCommand();
+        }
+
+        return $commands;
+    }
+
+    protected function configureIO(InputInterface $input, OutputInterface $output): void
+    {
+        parent::configureIO($input, $output);
+
+        $output-&gt;getFormatter()-&gt;setStyle('with-error', new OutputFormatterStyle('green'));
+        $output-&gt;getFormatter()-&gt;setStyle('uncovered', new OutputFormatterStyle('blue', null, ['bold']));
+        $output-&gt;getFormatter()-&gt;setStyle('timeout', new OutputFormatterStyle('yellow'));
+        $output-&gt;getFormatter()-&gt;setStyle('escaped', new OutputFormatterStyle('red', null, ['bold']));
+        $output-&gt;getFormatter()-&gt;setStyle('killed', new OutputFormatterStyle('green'));
+        $output-&gt;getFormatter()-&gt;setStyle('code', new OutputFormatterStyle('white'));
+
+        $output-&gt;getFormatter()-&gt;setStyle('diff-add', new OutputFormatterStyle('green'));
+        $output-&gt;getFormatter()-&gt;setStyle('diff-del', new OutputFormatterStyle('red'));
+
+        $output-&gt;getFormatter()-&gt;setStyle('low', new OutputFormatterStyle('red', null, ['bold']));
+        $output-&gt;getFormatter()-&gt;setStyle('medium', new OutputFormatterStyle('yellow', null, ['bold']));
+        $output-&gt;getFormatter()-&gt;setStyle('high', new OutputFormatterStyle('green', null, ['bold']));
+    }
+
+    private function logRunningWithDebugger(): void
+    {
+        if (\PHP_SAPI === 'phpdbg') {
+            $this-&gt;consoleOutput-&gt;logRunningWithDebugger(\PHP_SAPI);
+        } elseif (\extension_loaded('xdebug')) {
+            $this-&gt;consoleOutput-&gt;logRunningWithDebugger('Xdebug');
+        }
+    }
+}
+</code></pre>
+    </div>
+     <div class="col-lg-5 table-padding">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mutator</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Original</th>
+            <th>Replacement</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</div>
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

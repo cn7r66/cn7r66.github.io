@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>CoverageXmlParser.php - Infection Report</title>
         <link href="../../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../../../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,55 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../../../index.html">All files</a></li><li class="breadcrumb-item active"><a href="../../index.html">TestFramework</a></li><li class="breadcrumb-item active"><a href="../index.html">PhpUnit</a></li><li class="breadcrumb-item active"><a href="index.html">Coverage</a></li><li class="breadcrumb-item active">CoverageXmlParser.php</li>
+			<li class="breadcrumb-item "><a href="../../../index.html">All files</a></li>
+<li class="breadcrumb-item "><a href="../../index.html">TestFramework</a></li>
+<li class="breadcrumb-item "><a href="../index.html">PhpUnit</a></li>
+<li class="breadcrumb-item "><a href="index.html">Coverage</a></li>
+<li class="breadcrumb-item active">CoverageXmlParser.php</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>CoverageXmlParser.php</td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%;">78%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">78</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 78%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">78%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">90%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 86%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">86%</td>
     <td class="text-center">26</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
@@ -60,15 +84,257 @@
     </div>
 </div>
 
-            
+            <div class="row">
+    <div class="col-lg-7">
+        <pre><code class="lang-php">&lt;?php
+/**
+ * This code is licensed under the BSD 3-Clause License.
+ *
+ * Copyright (c) 2017-2018, Maks Rafalko
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+declare(strict_types=1);
+
+namespace Infection\TestFramework\PhpUnit\Coverage;
+
+use Infection\TestFramework\Coverage\CoverageDoesNotExistException;
+
+/**
+ * @internal
+ */
+class CoverageXmlParser
+{
+    /**
+     * @var string
+     */
+    private $coverageDir;
+
+    public function __construct(string $coverageDir)
+    {
+        $this-&gt;coverageDir = $coverageDir;
+    }
+
+    public function parse(string $coverageXmlContent): array
+    {
+        $dom = new \DOMDocument();
+        $dom-&gt;loadXML($this-&gt;removeNamespace($coverageXmlContent));
+        $xPath = new \DOMXPath($dom);
+
+        $coverage = [[]];
+
+        $nodes = $xPath-&gt;query('//file');
+        $projectSource = $this-&gt;getProjectSource($xPath);
+
+        foreach ($nodes as $node) {
+            $relativeFilePath = $node-&gt;getAttribute('href');
+
+            $fileCoverage = $this-&gt;processXmlFileCoverage($relativeFilePath, $projectSource);
+
+            $coverage[] = $fileCoverage;
+        }
+
+        return array_merge(...$coverage);
+    }
+
+    private function processXmlFileCoverage(string $relativeCoverageFilePath, string $projectSource): array
+    {
+        $absolutePath = realpath($this-&gt;coverageDir . '/' . $relativeCoverageFilePath);
+        \assert(\is_string($absolutePath));
+
+        $coverageFileXml = file_get_contents($absolutePath);
+        \assert(\is_string($coverageFileXml));
+
+        $dom = new \DOMDocument();
+        $dom-&gt;loadXML($this-&gt;removeNamespace($coverageFileXml));
+        $xPath = new \DOMXPath($dom);
+
+        $sourceFilePath = $this-&gt;getSourceFilePath($xPath, $relativeCoverageFilePath, $projectSource);
+
+        $linesNode = $xPath-&gt;query('/phpunit/file/totals/lines')[0];
+        $percentage = (float) $linesNode-&gt;getAttribute('percent');
+
+        $defaultCoverageFileData = ['byLine' =&gt; [], 'byMethod' =&gt; []];
+
+        if (!$percentage) {
+            return [$sourceFilePath =&gt; $defaultCoverageFileData];
+        }
+
+        /** @var \DOMNodeList $lineCoverageNodes */
+        $lineCoverageNodes = $xPath-&gt;query('/phpunit/file/coverage/line');
+
+        if (!$lineCoverageNodes-&gt;length) {
+            return [$sourceFilePath =&gt; $defaultCoverageFileData];
+        }
+
+        $methodsCoverageNodes = $xPath-&gt;query('/phpunit/file/class/method');
+
+        if (!$methodsCoverageNodes-&gt;length) {
+            $methodsCoverageNodes = $xPath-&gt;query('/phpunit/file/trait/method');
+        }
+
+        return [
+            $sourceFilePath =&gt; [
+                'byLine' =&gt; $this-&gt;getCoveredLinesData($lineCoverageNodes),
+                'byMethod' =&gt; $this-&gt;getMethodsCoverageData($methodsCoverageNodes),
+            ],
+        ];
+    }
+
+    /**
+     * Remove namespace to work with xPath without a headache
+     */
+    private function removeNamespace(string $xml): string
+    {
+        return preg_replace('/xmlns=\&quot;.*?\&quot;/', '', $xml);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function getSourceFilePath(\DOMXPath $xPath, string $relativeCoverageFilePath, string $projectSource): string
+    {
+        $fileNode = $xPath-&gt;query('/phpunit/file')[0];
+        $fileName = $fileNode-&gt;getAttribute('name');
+        $relativeFilePath = $fileNode-&gt;getAttribute('path');
+
+        if (!$relativeFilePath) {
+            // path is not present for old versions of PHPUnit, so parse the source file path from
+            // the path of XML coverage file
+            $relativeFilePath = str_replace(
+                sprintf('%s.xml', $fileName),
+                    '',
+                    $relativeCoverageFilePath
+            );
+        }
+
+        $path = $projectSource . '/' . ltrim($relativeFilePath, '/') . '/' . $fileName;
+        $realPath = realpath($path);
+
+        if ($realPath) {
+            return $realPath;
+        }
+
+        throw CoverageDoesNotExistException::forFileAtPath($fileName, $path);
+    }
+
+    private function getCoveredLinesData(\DOMNodeList $lineCoverageNodes): array
+    {
+        $fileCoverage = [];
+
+        foreach ($lineCoverageNodes as $lineCoverageNode) {
+            /** @var \DOMNode $lineCoverageNode */
+            $lineNumber = $lineCoverageNode-&gt;getAttribute('nr');
+
+            foreach ($lineCoverageNode-&gt;childNodes as $coveredNode) {
+                if ($coveredNode-&gt;nodeName === 'covered') {
+                    $testMethod = $coveredNode-&gt;getAttribute('by');
+
+                    $fileCoverage[$lineNumber][] = ['testMethod' =&gt; $testMethod];
+                }
+            }
+        }
+
+        return $fileCoverage;
+    }
+
+    private function getMethodsCoverageData(\DOMNodeList $methodsCoverageNodes): array
+    {
+        $methodsCoverage = [];
+
+        foreach ($methodsCoverageNodes as $methodsCoverageNode) {
+            $methodName = $methodsCoverageNode-&gt;getAttribute('name');
+
+            $methodsCoverage[$methodName] = [
+                'startLine' =&gt; (int) $methodsCoverageNode-&gt;getAttribute('start'),
+                'endLine' =&gt; (int) $methodsCoverageNode-&gt;getAttribute('end'),
+                'executable' =&gt; (int) $methodsCoverageNode-&gt;getAttribute('executable'),
+                'executed' =&gt; (int) $methodsCoverageNode-&gt;getAttribute('executed'),
+                'coverage' =&gt; (int) $methodsCoverageNode-&gt;getAttribute('coverage'),
+            ];
+        }
+
+        return $methodsCoverage;
+    }
+
+    private function getProjectSource(\DOMXPath $xPath): string
+    {
+        // phpunit &gt;= 6
+        $sourceNodes = $xPath-&gt;query('//project/@source');
+
+        if ($sourceNodes-&gt;length &gt; 0) {
+            return $sourceNodes[0]-&gt;nodeValue;
+        }
+
+        // phpunit &lt; 6
+        return $xPath-&gt;query('//project/@name')[0]-&gt;nodeValue;
+    }
+}
+</code></pre>
+    </div>
+     <div class="col-lg-5 table-padding">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mutator</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Original</th>
+            <th>Replacement</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</div>
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../../../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

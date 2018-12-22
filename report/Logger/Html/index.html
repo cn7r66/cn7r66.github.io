@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>Html - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,59 +21,111 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../../">All files</a></li><li class="breadcrumb-item active"><a href="../">Logger</a></li><li class="breadcrumb-item active">Html</li>
+			<li class="breadcrumb-item "><a href="../../">All files</a></li>
+<li class="breadcrumb-item "><a href="../">Logger</a></li>
+<li class="breadcrumb-item active">Html</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>Html</td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" style="width: 26%;">26%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">26</th>
-    <td class="text-center">39</td>
-    <td class="text-center">25</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">25%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 48%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">48%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 53%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">53%</td>
+    <td class="text-center">42</td>
+    <td class="text-center">37</td>
     <td class="text-center">0</td>
-    <td class="text-center">86</td>
+    <td class="text-center">83</td>
     <td class="text-center">0</td>
-    <th class="text-center">39</th>
-    <th class="text-center">111</th>
-    <th class="text-center">150</th>
+    <th class="text-center">42</th>
+    <th class="text-center">120</th>
+    <th class="text-center">162</th>
 </tr>
 <tr>
-    <td><a href="Node/index.html">Node</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">12%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">12</th>
-    <td class="text-center">11</td>
-    <td class="text-center">7</td>
+    <td><a href="Node/index.html"><img src="../../.img/directory.svg" class="icon" alt="File/Directory Icon">Node</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 14%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">14%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 23%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">23%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">60%</td>
+    <td class="text-center">12</td>
+    <td class="text-center">8</td>
     <td class="text-center">0</td>
-    <td class="text-center">67</td>
+    <td class="text-center">65</td>
     <td class="text-center">0</td>
-    <th class="text-center">11</th>
-    <th class="text-center">74</th>
+    <th class="text-center">12</th>
+    <th class="text-center">73</th>
     <th class="text-center">85</th>
 </tr>
 <tr>
-    <td><a href="HtmlReport.php.html">HtmlReport.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%;">27%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">27</th>
+    <td><a href="HtmlReport.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">HtmlReport.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 27%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">27%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 72%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">72%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 37%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">37%</td>
     <td class="text-center">3</td>
     <td class="text-center">5</td>
     <td class="text-center">0</td>
@@ -82,29 +136,61 @@
     <th class="text-center">11</th>
 </tr>
 <tr>
-    <td><a href="Renderer.php.html">Renderer.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%;">57%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">57</th>
-    <td class="text-center">24</td>
-    <td class="text-center">9</td>
+    <td><a href="Renderer.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">Renderer.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 46%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">46%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">75%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">60%</td>
+    <td class="text-center">25</td>
+    <td class="text-center">16</td>
     <td class="text-center">0</td>
-    <td class="text-center">9</td>
+    <td class="text-center">13</td>
     <td class="text-center">0</td>
-    <th class="text-center">24</th>
-    <th class="text-center">18</th>
-    <th class="text-center">42</th>
+    <th class="text-center">25</th>
+    <th class="text-center">29</th>
+    <th class="text-center">54</th>
 </tr>
 <tr>
-    <td><a href="ReportConfiguration.php.html">ReportConfiguration.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%;">8%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">8</th>
-    <td class="text-center">1</td>
-    <td class="text-center">4</td>
+    <td><a href="ReportConfiguration.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">ReportConfiguration.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 16%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">16%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 83%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">83%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">20%</td>
+    <td class="text-center">2</td>
+    <td class="text-center">8</td>
     <td class="text-center">0</td>
-    <td class="text-center">7</td>
+    <td class="text-center">2</td>
     <td class="text-center">0</td>
-    <th class="text-center">1</th>
-    <th class="text-center">11</th>
+    <th class="text-center">2</th>
+    <th class="text-center">10</th>
     <th class="text-center">12</th>
 </tr>
             </tbody>
@@ -116,11 +202,24 @@
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

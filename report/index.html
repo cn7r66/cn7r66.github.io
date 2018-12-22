@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>All files - Infection Report</title>
         <link href=".css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href=".css/highlight.css" rel="stylesheet" type="text/css">
         <link href=".css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -25,40 +27,74 @@
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>All files</td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="width: 64%;">64%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">64</th>
-    <td class="text-center">1224</td>
-    <td class="text-center">437</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 64%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">64%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 87%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">87%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">73%</td>
+    <td class="text-center">1227</td>
+    <td class="text-center">449</td>
     <td class="text-center">9</td>
-    <td class="text-center">254</td>
+    <td class="text-center">251</td>
     <td class="text-center">14</td>
-    <th class="text-center">1247</th>
-    <th class="text-center">691</th>
-    <th class="text-center">1938</th>
+    <th class="text-center">1250</th>
+    <th class="text-center">700</th>
+    <th class="text-center">1950</th>
 </tr>
 <tr>
-    <td><a href="Command/index.html">Command</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td><a href="Command/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Command</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 28%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">28%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">38</td>
     <td class="text-center">0</td>
@@ -69,9 +105,25 @@
     <th class="text-center">133</th>
 </tr>
 <tr>
-    <td><a href="Config/index.html">Config</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">70%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">70</th>
+    <td><a href="Config/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Config</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">70%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 91%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">91%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 77%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">77%</td>
     <td class="text-center">99</td>
     <td class="text-center">29</td>
     <td class="text-center">0</td>
@@ -82,9 +134,25 @@
     <th class="text-center">140</th>
 </tr>
 <tr>
-    <td><a href="Console/index.html">Console</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%;">35%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">35</th>
+    <td><a href="Console/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Console</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 35%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">35%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 87%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">87%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 41%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">41%</td>
     <td class="text-center">39</td>
     <td class="text-center">56</td>
     <td class="text-center">0</td>
@@ -95,9 +163,25 @@
     <th class="text-center">109</th>
 </tr>
 <tr>
-    <td><a href="Differ/index.html">Differ</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100" style="width: 52%;">52%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">52</th>
+    <td><a href="Differ/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Differ</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 52%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">52%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 64%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">64%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 81%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">81%</td>
     <td class="text-center">9</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
@@ -108,9 +192,25 @@
     <th class="text-center">17</th>
 </tr>
 <tr>
-    <td><a href="EventDispatcher/index.html">EventDispatcher</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="EventDispatcher/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">EventDispatcher</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -121,9 +221,25 @@
     <th class="text-center">4</th>
 </tr>
 <tr>
-    <td><a href="Events/index.html">Events</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="Events/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Events</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -134,9 +250,25 @@
     <th class="text-center">4</th>
 </tr>
 <tr>
-    <td><a href="Exception/index.html">Exception</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%;">33%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">33</th>
+    <td><a href="Exception/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Exception</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 33%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">33%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 33%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">33%</td>
     <td class="text-center">1</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
@@ -147,22 +279,54 @@
     <th class="text-center">3</th>
 </tr>
 <tr>
-    <td><a href="Finder/index.html">Finder</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%;">78%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">78</th>
+    <td><a href="Finder/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Finder</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 79%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">79%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">98%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 81%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">81%</td>
     <td class="text-center">44</td>
     <td class="text-center">11</td>
     <td class="text-center">0</td>
     <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center">44</th>
+    <td class="text-center">3</td>
+    <th class="text-center">47</th>
     <th class="text-center">12</th>
-    <th class="text-center">56</th>
+    <th class="text-center">59</th>
 </tr>
 <tr>
-    <td><a href="Http/index.html">Http</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td><a href="Http/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Http</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -173,9 +337,25 @@
     <th class="text-center">17</th>
 </tr>
 <tr>
-    <td><a href="Json/index.html">Json</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;">72%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">72</th>
+    <td><a href="Json/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Json</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 72%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">72%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 72%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">72%</td>
     <td class="text-center">13</td>
     <td class="text-center">5</td>
     <td class="text-center">0</td>
@@ -186,22 +366,54 @@
     <th class="text-center">18</th>
 </tr>
 <tr>
-    <td><a href="Logger/index.html">Logger</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%;">38%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">38</th>
-    <td class="text-center">73</td>
-    <td class="text-center">33</td>
+    <td><a href="Logger/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Logger</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 37%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">37%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 59%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">59%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 62%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">62%</td>
+    <td class="text-center">76</td>
+    <td class="text-center">45</td>
     <td class="text-center">0</td>
-    <td class="text-center">86</td>
+    <td class="text-center">83</td>
     <td class="text-center">0</td>
-    <th class="text-center">73</th>
-    <th class="text-center">119</th>
-    <th class="text-center">192</th>
+    <th class="text-center">76</th>
+    <th class="text-center">128</th>
+    <th class="text-center">204</th>
 </tr>
 <tr>
-    <td><a href="Mutant/index.html">Mutant</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%;">78%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">78</th>
+    <td><a href="Mutant/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Mutant</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 78%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">78%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 78%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">78%</td>
     <td class="text-center">68</td>
     <td class="text-center">19</td>
     <td class="text-center">0</td>
@@ -212,9 +424,25 @@
     <th class="text-center">87</th>
 </tr>
 <tr>
-    <td><a href="Mutator/index.html">Mutator</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%;">98%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">98</th>
+    <td><a href="Mutator/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Mutator</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">98%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 99%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">99%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 99%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">99%</td>
     <td class="text-center">405</td>
     <td class="text-center">4</td>
     <td class="text-center">1</td>
@@ -225,9 +453,25 @@
     <th class="text-center">414</th>
 </tr>
 <tr>
-    <td><a href="Performance/index.html">Performance</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;">54%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">54</th>
+    <td><a href="Performance/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Performance</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 54%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">54%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 54%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">54%</td>
     <td class="text-center">27</td>
     <td class="text-center">23</td>
     <td class="text-center">0</td>
@@ -238,9 +482,25 @@
     <th class="text-center">50</th>
 </tr>
 <tr>
-    <td><a href="Process/index.html">Process</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100" style="width: 44%;">44%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">44</th>
+    <td><a href="Process/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Process</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 44%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">44%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 93%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">93%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 47%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">47%</td>
     <td class="text-center">75</td>
     <td class="text-center">88</td>
     <td class="text-center">5</td>
@@ -251,22 +511,54 @@
     <th class="text-center">179</th>
 </tr>
 <tr>
-    <td><a href="StreamWrapper/index.html">StreamWrapper</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;">54%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">54</th>
+    <td><a href="StreamWrapper/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">StreamWrapper</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 59%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">59%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">98%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">60%</td>
     <td class="text-center">44</td>
     <td class="text-center">38</td>
     <td class="text-center">2</td>
     <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center">46</th>
+    <td class="text-center">11</td>
+    <th class="text-center">57</th>
     <th class="text-center">39</th>
-    <th class="text-center">85</th>
+    <th class="text-center">96</th>
 </tr>
 <tr>
-    <td><a href="TestFramework/index.html">TestFramework</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">75</th>
+    <td><a href="TestFramework/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">TestFramework</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">75%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">97%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 76%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">76%</td>
     <td class="text-center">245</td>
     <td class="text-center">75</td>
     <td class="text-center">1</td>
@@ -277,9 +569,25 @@
     <th class="text-center">328</th>
 </tr>
 <tr>
-    <td><a href="Traverser/index.html">Traverser</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">50</th>
+    <td><a href="Traverser/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Traverser</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">50%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">50%</td>
     <td class="text-center">2</td>
     <td class="text-center">2</td>
     <td class="text-center">0</td>
@@ -290,9 +598,25 @@
     <th class="text-center">4</th>
 </tr>
 <tr>
-    <td><a href="Utils/index.html">Utils</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">90%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">90</th>
+    <td><a href="Utils/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Utils</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">90%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">90%</td>
     <td class="text-center">10</td>
     <td class="text-center">1</td>
     <td class="text-center">0</td>
@@ -303,9 +627,25 @@
     <th class="text-center">11</th>
 </tr>
 <tr>
-    <td><a href="Visitor/index.html">Visitor</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" style="width: 84%;">84%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">84</th>
+    <td><a href="Visitor/index.html"><img src=".img/directory.svg" class="icon" alt="File/Directory Icon">Visitor</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">84%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">84%</td>
     <td class="text-center">61</td>
     <td class="text-center">11</td>
     <td class="text-center">0</td>
@@ -316,9 +656,25 @@
     <th class="text-center">72</th>
 </tr>
 <tr>
-    <td><a href="Mutation.php.html">Mutation.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">100</th>
+    <td><a href="Mutation.php.html"><img src=".img/file.svg" class="icon" alt="File/Directory Icon">Mutation.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
     <td class="text-center">1</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -337,11 +693,24 @@
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src=".js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

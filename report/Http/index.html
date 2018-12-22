@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>Http - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,52 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../">All files</a></li><li class="breadcrumb-item active">Http</li>
+			<li class="breadcrumb-item "><a href="../">All files</a></li>
+<li class="breadcrumb-item active">Http</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>Http</td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -56,9 +77,25 @@
     <th class="text-center">17</th>
 </tr>
 <tr>
-    <td><a href="BadgeApiClient.php.html">BadgeApiClient.php</a></td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td><a href="BadgeApiClient.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">BadgeApiClient.php</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
@@ -77,11 +114,24 @@
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

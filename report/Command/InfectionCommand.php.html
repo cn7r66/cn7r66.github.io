@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>InfectionCommand.php - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,53 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../index.html">All files</a></li><li class="breadcrumb-item active"><a href="index.html">Command</a></li><li class="breadcrumb-item active">InfectionCommand.php</li>
+			<li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+<li class="breadcrumb-item "><a href="index.html">Command</a></li>
+<li class="breadcrumb-item active">InfectionCommand.php</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>InfectionCommand.php</td>
-    <td><div class="progress"><div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div></div></td>
-    <th class="text-center text-danger" style="width: 10%">0</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 69%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">69%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">0%</td>
     <td class="text-center">0</td>
     <td class="text-center">29</td>
     <td class="text-center">0</td>
@@ -60,15 +82,418 @@
     </div>
 </div>
 
-            
+            <div class="row">
+    <div class="col-lg-7">
+        <pre><code class="lang-php">&lt;?php
+/**
+ * This code is licensed under the BSD 3-Clause License.
+ *
+ * Copyright (c) 2017-2018, Maks Rafalko
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+declare(strict_types=1);
+
+namespace Infection\Command;
+
+use Infection\Config\InfectionConfig;
+use Infection\Console\ConsoleOutput;
+use Infection\Console\Exception\ConfigurationException;
+use Infection\Console\Exception\InfectionException;
+use Infection\Console\LogVerbosity;
+use Infection\EventDispatcher\EventDispatcherInterface;
+use Infection\Events\ApplicationExecutionFinished;
+use Infection\Events\ApplicationExecutionStarted;
+use Infection\Finder\Exception\LocatorException;
+use Infection\Finder\Locator;
+use Infection\Mutant\Generator\MutationsGenerator;
+use Infection\Process\Builder\ProcessBuilder;
+use Infection\Process\Runner\InitialTestsRunner;
+use Infection\Process\Runner\MutationTestingRunner;
+use Infection\Process\Runner\TestRunConstraintChecker;
+use Infection\TestFramework\Coverage\CodeCoverageData;
+use Infection\TestFramework\HasExtraNodeVisitors;
+use Infection\TestFramework\PhpSpec\PhpSpecExtraOptions;
+use Infection\TestFramework\PhpUnit\Coverage\CoverageXmlParser;
+use Infection\TestFramework\PhpUnit\PhpUnitExtraOptions;
+use Infection\TestFramework\TestFrameworkExtraOptions;
+use Infection\TestFramework\TestFrameworkTypes;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * @internal
+ */
+final class InfectionCommand extends BaseCommand
+{
+    /**
+     * @var ConsoleOutput
+     */
+    private $consoleOutput;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var bool
+     */
+    private $skipCoverage;
+
+    protected function configure(): void
+    {
+        $this-&gt;setName('run')
+            -&gt;setDescription('Runs the mutation testing.')
+            -&gt;addOption(
+                'test-framework',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Name of the Test framework to use (phpunit, phpspec)',
+                ''
+            )
+            -&gt;addOption(
+                'test-framework-options',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Options to be passed to the test framework'
+            )
+            -&gt;addOption(
+                'threads',
+                'j',
+                InputOption::VALUE_REQUIRED,
+                'Threads count',
+                '1'
+            )
+            -&gt;addOption(
+                'only-covered',
+                null,
+                InputOption::VALUE_NONE,
+                'Mutate only covered by tests lines of code'
+            )
+            -&gt;addOption(
+                'show-mutations',
+                's',
+                InputOption::VALUE_NONE,
+                'Show mutations to the console'
+            )
+            -&gt;addOption(
+                'configuration',
+                'c',
+                InputOption::VALUE_REQUIRED,
+                'Custom configuration file path'
+            )
+            -&gt;addOption(
+                'coverage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Path to existing coverage (`xml` and `junit` reports are required)',
+                ''
+            )
+            -&gt;addOption(
+                'mutators',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Specify particular mutators. Example: --mutators=Plus,PublicVisibility'
+            )
+            -&gt;addOption(
+                'filter',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Filter which files to mutate',
+                ''
+            )
+            -&gt;addOption(
+                'formatter',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Output formatter. Possible values: dot, progress',
+                'dot'
+            )
+            -&gt;addOption(
+                'min-msi',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Minimum Mutation Score Indicator (MSI) percentage value. Should be used in CI server.'
+            )
+            -&gt;addOption(
+                'min-covered-msi',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Minimum Covered Code Mutation Score Indicator (MSI) percentage value. Should be used in CI server.'
+            )
+            -&gt;addOption(
+                'log-verbosity',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Log verbosity level. \'all\' - full logs format, \'default\' - short logs format, \'none\' - no logs.',
+                LogVerbosity::NORMAL
+            )
+            -&gt;addOption(
+                'initial-tests-php-options',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Extra php options for the initial test runner. Will be ignored if --coverage option presented.',
+                ''
+            )
+            -&gt;addOption(
+                'ignore-msi-with-no-mutations',
+                null,
+                InputOption::VALUE_NONE,
+                'Ignore MSI violations with zero mutations'
+            )
+            -&gt;addOption(
+                'debug',
+                null,
+                InputOption::VALUE_NONE,
+                'Debug mode. Will not clean up Infection temporary folder.'
+            )
+        ;
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $container = $this-&gt;getContainer();
+
+        if (!$container-&gt;get('coverage.checker')-&gt;hasDebuggerOrCoverageOption()) {
+            $this-&gt;consoleOutput-&gt;logMissedDebuggerOrCoverageOption();
+
+            return 1;
+        }
+
+        $config = $container-&gt;get('infection.config');
+
+        $this-&gt;includeUserBootstrap($config);
+
+        $testFrameworkKey = $input-&gt;getOption('test-framework') ?: $config-&gt;getTestFramework();
+        $adapter = $container-&gt;get('test.framework.factory')-&gt;create($testFrameworkKey, $this-&gt;skipCoverage);
+
+        LogVerbosity::convertVerbosityLevel($input, $this-&gt;consoleOutput);
+
+        $metricsCalculator = $container-&gt;get('metrics');
+        $container-&gt;get('subscriber.builder')-&gt;registerSubscribers($adapter, $output);
+
+        $this-&gt;eventDispatcher-&gt;dispatch(new ApplicationExecutionStarted());
+
+        $processBuilder = new ProcessBuilder($adapter, $config-&gt;getProcessTimeout());
+        $testFrameworkOptions = $this-&gt;getTestFrameworkExtraOptions($testFrameworkKey);
+
+        $initialTestsRunner = new InitialTestsRunner($processBuilder, $this-&gt;eventDispatcher);
+        $initialTestSuitProcess = $initialTestsRunner-&gt;run(
+            $testFrameworkOptions-&gt;getForInitialProcess(),
+            $this-&gt;skipCoverage,
+            explode(
+                ' ',
+                $input-&gt;hasOption('initial-tests-php-options') ? $input-&gt;getOption('initial-tests-php-options') :
+                    $config-&gt;getInitialTestsPhpOptions()
+            )
+        );
+
+        if (!$initialTestSuitProcess-&gt;isSuccessful()) {
+            $this-&gt;consoleOutput-&gt;logInitialTestsDoNotPass($initialTestSuitProcess, $adapter);
+
+            return 1;
+        }
+
+        $container-&gt;get('memory.limit.applier')-&gt;applyMemoryLimitFromProcess($initialTestSuitProcess, $adapter);
+
+        $codeCoverageData = $this-&gt;getCodeCoverageData($testFrameworkKey);
+        $mutationsGenerator = new MutationsGenerator(
+            $container-&gt;get('src.dirs'),
+            $container-&gt;get('exclude.paths'),
+            $codeCoverageData,
+            $container-&gt;get('mutators'),
+            $this-&gt;eventDispatcher,
+            $container-&gt;get('parser')
+        );
+
+        $mutations = $mutationsGenerator-&gt;generate(
+            $input-&gt;getOption('only-covered'),
+            $input-&gt;getOption('filter'),
+            $adapter instanceof HasExtraNodeVisitors ? $adapter-&gt;getMutationsCollectionNodeVisitors() : []
+        );
+
+        $mutationTestingRunner = new MutationTestingRunner(
+            $processBuilder,
+            $container-&gt;get('parallel.process.runner'),
+            $container-&gt;get('mutant.creator'),
+            $this-&gt;eventDispatcher,
+            $mutations
+        );
+
+        $mutationTestingRunner-&gt;run(
+            (int) $this-&gt;input-&gt;getOption('threads'),
+            $codeCoverageData,
+            $testFrameworkOptions-&gt;getForMutantProcess()
+        );
+        /** @var TestRunConstraintChecker $constraintChecker */
+        $constraintChecker = $container-&gt;get('test.run.constraint.checker');
+
+        $statusCode = 0;
+
+        if (!$constraintChecker-&gt;hasTestRunPassedConstraints()) {
+            $this-&gt;consoleOutput-&gt;logBadMsiErrorMessage(
+                $metricsCalculator,
+                $constraintChecker-&gt;getMinRequiredValue(),
+                $constraintChecker-&gt;getErrorType()
+            );
+
+            $statusCode = 1;
+        }
+
+        $this-&gt;eventDispatcher-&gt;dispatch(new ApplicationExecutionFinished());
+
+        return $statusCode;
+    }
+
+    /**
+     * Run configuration command if config does not exist
+     *
+     *
+     * @throws InfectionException
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output): void
+    {
+        parent::initialize($input, $output);
+
+        $locator = $this-&gt;getContainer()-&gt;get('locator');
+
+        if ($customConfigPath = $input-&gt;getOption('configuration')) {
+            $locator-&gt;locate($customConfigPath);
+        } else {
+            $this-&gt;runConfigurationCommand($locator);
+        }
+
+        $this-&gt;consoleOutput = $this-&gt;getApplication()-&gt;getConsoleOutput();
+        $this-&gt;skipCoverage = \strlen(trim($input-&gt;getOption('coverage'))) &gt; 0;
+        $this-&gt;eventDispatcher = $this-&gt;getContainer()-&gt;get('dispatcher');
+    }
+
+    private function includeUserBootstrap(InfectionConfig $config): void
+    {
+        $bootstrap = $config-&gt;getBootstrap();
+
+        if ($bootstrap) {
+            if (!file_exists($bootstrap)) {
+                throw LocatorException::fileOrDirectoryDoesNotExist($bootstrap);
+            }
+
+            (function ($infectionBootstrapFile): void {
+                require_once $infectionBootstrapFile;
+            })($bootstrap);
+        }
+    }
+
+    private function getCodeCoverageData(string $testFrameworkKey): CodeCoverageData
+    {
+        $coverageDir = $this-&gt;getContainer()-&gt;get(sprintf('coverage.dir.%s', $testFrameworkKey));
+        $testFileDataProviderServiceId = sprintf('test.file.data.provider.%s', $testFrameworkKey);
+        $testFileDataProviderService = $this-&gt;getContainer()-&gt;has($testFileDataProviderServiceId)
+            ? $this-&gt;getContainer()-&gt;get($testFileDataProviderServiceId)
+            : null;
+
+        return new CodeCoverageData($coverageDir, new CoverageXmlParser($coverageDir), $testFrameworkKey, $testFileDataProviderService);
+    }
+
+    private function getTestFrameworkExtraOptions(string $testFrameworkKey): TestFrameworkExtraOptions
+    {
+        $extraOptions = $this-&gt;input-&gt;hasOption('test-framework-options')
+            ? $this-&gt;input-&gt;getOption('test-framework-options') : $this-&gt;getContainer()-&gt;get('infection.config')-&gt;getTestFrameworkOptions();
+
+        return TestFrameworkTypes::PHPUNIT === $testFrameworkKey
+            ? new PhpUnitExtraOptions($extraOptions)
+            : new PhpSpecExtraOptions($extraOptions);
+    }
+
+    private function runConfigurationCommand(Locator $locator): void
+    {
+        try {
+            $locator-&gt;locateOneOf(InfectionConfig::POSSIBLE_CONFIG_FILE_NAMES);
+        } catch (\Exception $e) {
+            $configureCommand = $this-&gt;getApplication()-&gt;find('configure');
+            $config = $this-&gt;getContainer()-&gt;get('infection.config');
+
+            $args = [
+                '--test-framework' =&gt; $this-&gt;input-&gt;getOption('test-framework') ?: $config-&gt;getTestFramework(),
+            ];
+
+            $newInput = new ArrayInput($args);
+            $newInput-&gt;setInteractive($this-&gt;input-&gt;isInteractive());
+            $result = $configureCommand-&gt;run($newInput, $this-&gt;output);
+
+            if ($result !== 0) {
+                throw ConfigurationException::configurationAborted();
+            }
+        }
+    }
+}
+</code></pre>
+    </div>
+     <div class="col-lg-5 table-padding">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mutator</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Original</th>
+            <th>Replacement</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</div>
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

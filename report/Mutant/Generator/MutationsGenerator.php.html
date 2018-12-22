@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>MutationsGenerator.php - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,54 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../../index.html">All files</a></li><li class="breadcrumb-item active"><a href="../index.html">Mutant</a></li><li class="breadcrumb-item active"><a href="index.html">Generator</a></li><li class="breadcrumb-item active">MutationsGenerator.php</li>
+			<li class="breadcrumb-item "><a href="../../index.html">All files</a></li>
+<li class="breadcrumb-item "><a href="../index.html">Mutant</a></li>
+<li class="breadcrumb-item "><a href="index.html">Generator</a></li>
+<li class="breadcrumb-item active">MutationsGenerator.php</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>MutationsGenerator.php</td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">43%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">43</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 43%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">43%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 43%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-danger">43%</td>
     <td class="text-center">10</td>
     <td class="text-center">13</td>
     <td class="text-center">0</td>
@@ -60,15 +83,231 @@
     </div>
 </div>
 
-            
+            <div class="row">
+    <div class="col-lg-7">
+        <pre><code class="lang-php">&lt;?php
+/**
+ * This code is licensed under the BSD 3-Clause License.
+ *
+ * Copyright (c) 2017-2018, Maks Rafalko
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+declare(strict_types=1);
+
+namespace Infection\Mutant\Generator;
+
+use Infection\EventDispatcher\EventDispatcherInterface;
+use Infection\Events\MutableFileProcessed;
+use Infection\Events\MutationGeneratingFinished;
+use Infection\Events\MutationGeneratingStarted;
+use Infection\Finder\SourceFilesFinder;
+use Infection\Mutant\Exception\ParserException;
+use Infection\Mutation;
+use Infection\Mutator\Util\Mutator;
+use Infection\TestFramework\Coverage\CodeCoverageData;
+use Infection\Traverser\PriorityNodeTraverser;
+use Infection\Visitor\FullyQualifiedClassNameVisitor;
+use Infection\Visitor\MutationsCollectorVisitor;
+use Infection\Visitor\ParentConnectorVisitor;
+use Infection\Visitor\ReflectionVisitor;
+use PhpParser\Node;
+use PhpParser\NodeVisitorAbstract;
+use PhpParser\Parser;
+use Symfony\Component\Finder\SplFileInfo;
+
+/**
+ * @internal
+ */
+final class MutationsGenerator
+{
+    /**
+     * @var array source directories
+     */
+    private $srcDirs;
+
+    /**
+     * @var CodeCoverageData
+     */
+    private $codeCoverageData;
+
+    /**
+     * @var array
+     */
+    private $excludeDirsOrFiles;
+
+    /**
+     * @var Mutator[]
+     */
+    private $mutators;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var Parser
+     */
+    private $parser;
+
+    public function __construct(
+        array $srcDirs,
+        array $excludeDirsOrFiles,
+        CodeCoverageData $codeCoverageData,
+        array $mutators,
+        EventDispatcherInterface $eventDispatcher,
+        Parser $parser
+    ) {
+        $this-&gt;srcDirs = $srcDirs;
+        $this-&gt;codeCoverageData = $codeCoverageData;
+        $this-&gt;excludeDirsOrFiles = $excludeDirsOrFiles;
+        $this-&gt;mutators = $mutators;
+        $this-&gt;eventDispatcher = $eventDispatcher;
+        $this-&gt;parser = $parser;
+    }
+
+    /**
+     * @param bool $onlyCovered mutate only covered by tests lines of code
+     * @param NodeVisitorAbstract[] $extraNodeVisitors
+     *
+     * @return Mutation[]
+     */
+    public function generate(bool $onlyCovered, string $filter = '', array $extraNodeVisitors = []): array
+    {
+        $sourceFilesFinder = new SourceFilesFinder($this-&gt;srcDirs, $this-&gt;excludeDirsOrFiles);
+        $files = $sourceFilesFinder-&gt;getSourceFiles($filter);
+        $allFilesMutations = [[]];
+
+        $this-&gt;eventDispatcher-&gt;dispatch(new MutationGeneratingStarted($files-&gt;count()));
+
+        foreach ($files as $file) {
+            if (!$onlyCovered || $this-&gt;hasTests($file)) {
+                $allFilesMutations[] = $this-&gt;getMutationsFromFile($file, $onlyCovered, $extraNodeVisitors);
+            }
+
+            $this-&gt;eventDispatcher-&gt;dispatch(new MutableFileProcessed());
+        }
+
+        $this-&gt;eventDispatcher-&gt;dispatch(new MutationGeneratingFinished());
+
+        return array_merge(...$allFilesMutations);
+    }
+
+    /**
+     * @param bool $onlyCovered mutate only covered by tests lines of code
+     * @param NodeVisitorAbstract[] $extraNodeVisitors extra visitors to influence to mutation collection process
+     *
+     * @return Mutation[]
+     */
+    private function getMutationsFromFile(SplFileInfo $file, bool $onlyCovered, array $extraNodeVisitors): array
+    {
+        try {
+            /** @var Node[] $initialStatements */
+            $initialStatements = $this-&gt;parser-&gt;parse($file-&gt;getContents());
+        } catch (\Throwable $t) {
+            throw ParserException::fromInvalidFile($file, $t);
+        }
+
+        $traverser = new PriorityNodeTraverser();
+        $filePath = $file-&gt;getRealPath();
+        \assert(\is_string($filePath));
+
+        $mutationsCollectorVisitor = new MutationsCollectorVisitor(
+            $this-&gt;mutators,
+            $filePath,
+            $initialStatements,
+            $this-&gt;codeCoverageData,
+            $onlyCovered
+        );
+
+        $traverser-&gt;addVisitor(new ParentConnectorVisitor(), 40);
+        $traverser-&gt;addVisitor(new FullyQualifiedClassNameVisitor(), 30);
+        $traverser-&gt;addVisitor(new ReflectionVisitor(), 20);
+        $traverser-&gt;addVisitor($mutationsCollectorVisitor, 10);
+
+        foreach ($extraNodeVisitors as $priority =&gt; $visitor) {
+            $traverser-&gt;addVisitor($visitor, $priority);
+        }
+
+        $traverser-&gt;traverse($initialStatements);
+
+        return $mutationsCollectorVisitor-&gt;getMutations();
+    }
+
+    private function hasTests(SplFileInfo $file): bool
+    {
+        $filePath = $file-&gt;getRealPath();
+        \assert(\is_string($filePath));
+
+        return $this-&gt;codeCoverageData-&gt;hasTests($filePath);
+    }
+}
+</code></pre>
+    </div>
+     <div class="col-lg-5 table-padding">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Mutator</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Original</th>
+            <th>Replacement</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</div>
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>PhpUnit - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
         <link href="../../.css/infection.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -19,33 +21,53 @@
             <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="../../">All files</a></li><li class="breadcrumb-item active"><a href="../">TestFramework</a></li><li class="breadcrumb-item active">PhpUnit</li>
+			<li class="breadcrumb-item "><a href="../../">All files</a></li>
+<li class="breadcrumb-item "><a href="../">TestFramework</a></li>
+<li class="breadcrumb-item active">PhpUnit</li>
 		</ol>
 	</div>
 </div>
 
             <div class="row">
-    <div class="col-lg-11">
-        <table class="table table-bordered table-hover table-no-top">
+    <div class="col-lg-12 table-padding">
+        <table class="table table-report table-bordered table-hover table-no-top">
             <thead>
             <tr>
                 <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation score</span></div></th>
+                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
                 <th class="rotate text-center"><div><span># Killed</span></div></th>
                 <th class="rotate text-center"><div><span># Escaped</span></div></th>
                 <th class="rotate text-center"><div><span># Timeout</span></div></th>
                 <th class="rotate text-center"><div><span># No coverage</span></div></th>
                 <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate rotate-width-70 text-center"><div><span>Total mutants</span></div></th>
+                <th class="rotate text-center"><div><span>Total detected</span></div></th>
+                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
             </tr>
             </thead>
             <tbody>
                 <tr>
     <td>PhpUnit</td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" style="width: 82%;">82%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">82</th>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 82%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">82%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">98%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 83%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">83%</td>
     <td class="text-center">156</td>
     <td class="text-center">31</td>
     <td class="text-center">0</td>
@@ -56,9 +78,25 @@
     <th class="text-center">190</th>
 </tr>
 <tr>
-    <td><a href="Adapter/index.html">Adapter</a></td>
-    <td><div class="progress"><div class="progress-bar bg-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%;">73%</div></div></td>
-    <th class="text-center text-warning" style="width: 10%">73</th>
+    <td><a href="Adapter/index.html"><img src="../../.img/directory.svg" class="icon" alt="File/Directory Icon">Adapter</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">73%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 73%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">73%</td>
     <td class="text-center">11</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
@@ -69,9 +107,25 @@
     <th class="text-center">15</th>
 </tr>
 <tr>
-    <td><a href="Config/index.html">Config</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" style="width: 82%;">82%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">82</th>
+    <td><a href="Config/index.html"><img src="../../.img/directory.svg" class="icon" alt="File/Directory Icon">Config</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 82%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">82%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">100%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 82%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">82%</td>
     <td class="text-center">107</td>
     <td class="text-center">23</td>
     <td class="text-center">0</td>
@@ -82,9 +136,25 @@
     <th class="text-center">130</th>
 </tr>
 <tr>
-    <td><a href="Coverage/index.html">Coverage</a></td>
-    <td><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" style="width: 84%;">84%</div></div></td>
-    <th class="text-center text-success" style="width: 10%">84</th>
+    <td><a href="Coverage/index.html"><img src="../../.img/directory.svg" class="icon" alt="File/Directory Icon">Coverage</a></td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-warning">84%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 93%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">93%</td>
+    <td>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;"></div>
+        </div>
+    </td>
+    <td class="text-center score text-success">90%</td>
     <td class="text-center">38</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
@@ -103,11 +173,24 @@
 
             <div class="row">
     <div class="col-lg-12">
-        <footer>Generated with Infection dev-master. Visit the
-            <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+        <footer>
+            <hr>
+            <p>
+                <h4>Legend</h4>
+                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+            </p>
+            <p>
+                Generated with Infection dev-master. Visit the
+                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+            </p>
         </footer>
     </div>
 </div>
+
+            <script src="../../.js/highlight.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
         </div>
     </body>
 </html>
