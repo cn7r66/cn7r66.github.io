@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mutator - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,505 +11,773 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">Mutator<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../">All files</a></li>
-<li class="breadcrumb-item active">Mutator</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+    <li class="breadcrumb-item active">Mutator</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>Mutator</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">98%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 99%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">99%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 99%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">99%</td>
-    <td class="text-center">405</td>
-    <td class="text-center">4</td>
-    <td class="text-center">1</td>
-    <td class="text-center">4</td>
-    <td class="text-center">0</td>
-    <th class="text-center">406</th>
-    <th class="text-center">8</th>
-    <th class="text-center">414</th>
-</tr>
-<tr>
-    <td><a href="Arithmetic/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Arithmetic</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">97%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">97%</td>
-    <td class="text-center">42</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">42</th>
-    <th class="text-center">1</th>
-    <th class="text-center">43</th>
-</tr>
-<tr>
-    <td><a href="Boolean/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Boolean</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">27</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">27</th>
-    <th class="text-center">0</th>
-    <th class="text-center">27</th>
-</tr>
-<tr>
-    <td><a href="ConditionalBoundary/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ConditionalBoundary</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">4</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">4</th>
-    <th class="text-center">0</th>
-    <th class="text-center">4</th>
-</tr>
-<tr>
-    <td><a href="ConditionalNegotiation/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ConditionalNegotiation</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-<tr>
-    <td><a href="FunctionSignature/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">FunctionSignature</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 93%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">93%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 95%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">95%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">97%</td>
-    <td class="text-center">43</td>
-    <td class="text-center">1</td>
-    <td class="text-center">1</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <th class="text-center">44</th>
-    <th class="text-center">3</th>
-    <th class="text-center">47</th>
-</tr>
-<tr>
-    <td><a href="Number/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Number</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">97%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 97%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">97%</td>
-    <td class="text-center">65</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">65</th>
-    <th class="text-center">2</th>
-    <th class="text-center">67</th>
-</tr>
-<tr>
-    <td><a href="Operator/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Operator</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">16</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">16</th>
-    <th class="text-center">0</th>
-    <th class="text-center">16</th>
-</tr>
-<tr>
-    <td><a href="Regex/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Regex</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">18</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">18</th>
-    <th class="text-center">0</th>
-    <th class="text-center">18</th>
-</tr>
-<tr>
-    <td><a href="Removal/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Removal</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">12</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">12</th>
-    <th class="text-center">0</th>
-    <th class="text-center">12</th>
-</tr>
-<tr>
-    <td><a href="ReturnValue/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ReturnValue</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">40</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">40</th>
-    <th class="text-center">0</th>
-    <th class="text-center">40</th>
-</tr>
-<tr>
-    <td><a href="Sort/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Sort</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">1</th>
-    <th class="text-center">0</th>
-    <th class="text-center">1</th>
-</tr>
-<tr>
-    <td><a href="Unwrap/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Unwrap</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">59</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">59</th>
-    <th class="text-center">0</th>
-    <th class="text-center">59</th>
-</tr>
-<tr>
-    <td><a href="Util/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Util</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">96%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">96%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">62</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <th class="text-center">62</th>
-    <th class="text-center">2</th>
-    <th class="text-center">64</th>
-</tr>
-<tr>
-    <td><a href="ZeroIteration/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ZeroIteration</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Mutator</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:98%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">98%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:99%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">99%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:99%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                99%
+            </td>
+            <td class="text-center">
+                410
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>411</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>419</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Arithmetic/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Arithmetic</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:97%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">97%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:97%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                97%
+            </td>
+            <td class="text-center">
+                42
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>42</strong>
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+            <td class="text-center">
+                <strong>43</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Boolean/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Boolean</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                27
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>27</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>27</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="ConditionalBoundary/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ConditionalBoundary</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>4</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>4</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="ConditionalNegotiation/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ConditionalNegotiation</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="FunctionSignature/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">FunctionSignature</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:93%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">93%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:95%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">95%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:97%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                97%
+            </td>
+            <td class="text-center">
+                43
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>44</strong>
+            </td>
+            <td class="text-center">
+                <strong>3</strong>
+            </td>
+            <td class="text-center">
+                <strong>47</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Number/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Number</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:97%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">97%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:97%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                97%
+            </td>
+            <td class="text-center">
+                65
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>65</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>67</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Operator/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Operator</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                16
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>16</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>16</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Regex/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Regex</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                18
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>18</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>18</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Removal/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Removal</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                12
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>12</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>12</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="ReturnValue/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ReturnValue</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                40
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>40</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>40</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Sort/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Sort</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Unwrap/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Unwrap</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                64
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>64</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>64</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Util/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Util</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:96%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">96%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:96%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">96%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                62
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>62</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>64</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="ZeroIteration/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">ZeroIteration</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+            </div>
 
             
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

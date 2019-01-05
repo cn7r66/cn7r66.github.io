@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DotFormatter.php - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,373 +11,117 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">DotFormatter.php<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../../index.html">All files</a></li>
-<li class="breadcrumb-item "><a href="../index.html">Console</a></li>
-<li class="breadcrumb-item "><a href="index.html">OutputFormatter</a></li>
-<li class="breadcrumb-item active">DotFormatter.php</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="../index.html">Console</a></li>
+    <li class="breadcrumb-item "><a href="index.html">OutputFormatter</a></li>
+    <li class="breadcrumb-item active">DotFormatter.php</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>DotFormatter.php</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">50%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 95%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">95%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 52%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">52%</td>
-    <td class="text-center">11</td>
-    <td class="text-center">10</td>
-    <td class="text-center">0</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center">11</th>
-    <th class="text-center">11</th>
-    <th class="text-center">22</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-            <div class="row">
-    <div class="col-lg-7">
-        <pre><code class="lang-php">&lt;?php
-/**
- * This code is licensed under the BSD 3-Clause License.
- *
- * Copyright (c) 2017-2018, Maks Rafalko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-declare(strict_types=1);
-
-namespace Infection\Console\OutputFormatter;
-
-use Infection\Process\MutantProcess;
-use Infection\Process\MutantProcessInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
-/**
- * @internal
- */
-final class DotFormatter extends AbstractOutputFormatter
-{
-    private const DOTS_PER_ROW = 50;
-
-    /**
-     * @var OutputInterface
-     */
-    private $output;
-
-    public function __construct(OutputInterface $output)
-    {
-        $this-&gt;output = $output;
-    }
-
-    public function start(int $mutationCount): void
-    {
-        parent::start($mutationCount);
-
-        $this-&gt;output-&gt;writeln([
-            '',
-            '&lt;killed&gt;.&lt;/killed&gt;: killed, '
-            . '&lt;escaped&gt;M&lt;/escaped&gt;: escaped, '
-            . '&lt;uncovered&gt;S&lt;/uncovered&gt;: uncovered, '
-            . '&lt;with-error&gt;E&lt;/with-error&gt;: fatal error, '
-            . '&lt;timeout&gt;T&lt;/timeout&gt;: timed out',
-            '',
-        ]);
-    }
-
-    public function advance(MutantProcessInterface $mutantProcess, int $mutationCount): void
-    {
-        parent::advance($mutantProcess, $mutationCount);
-
-        switch ($mutantProcess-&gt;getResultCode()) {
-            case MutantProcess::CODE_KILLED:
-                $this-&gt;output-&gt;write('&lt;killed&gt;.&lt;/killed&gt;');
-
-                break;
-            case MutantProcess::CODE_NOT_COVERED:
-                $this-&gt;output-&gt;write('&lt;uncovered&gt;S&lt;/uncovered&gt;');
-
-                break;
-            case MutantProcess::CODE_ESCAPED:
-                $this-&gt;output-&gt;write('&lt;escaped&gt;M&lt;/escaped&gt;');
-
-                break;
-            case MutantProcess::CODE_TIMED_OUT:
-                $this-&gt;output-&gt;write('&lt;timeout&gt;T&lt;/timeout&gt;');
-
-                break;
-            case MutantProcess::CODE_ERROR:
-                $this-&gt;output-&gt;write('&lt;with-error&gt;E&lt;/with-error&gt;');
-
-                break;
-        }
-
-        $remainder = $this-&gt;callsCount % self::DOTS_PER_ROW;
-        $endOfRow = 0 === $remainder;
-        $lastDot = $mutationCount === $this-&gt;callsCount;
-
-        if ($lastDot &amp;&amp; !$endOfRow) {
-            $this-&gt;output-&gt;write(str_repeat(' ', self::DOTS_PER_ROW - $remainder));
-        }
-
-        if ($lastDot || $endOfRow) {
-            $length = \strlen((string) $mutationCount);
-            $format = sprintf('   (%%%dd / %%%dd)', $length, $length);
-
-            $this-&gt;output-&gt;write(sprintf($format, $this-&gt;callsCount, $mutationCount));
-
-            if ($this-&gt;callsCount !== $mutationCount) {
-                $this-&gt;output-&gt;writeln('');
-            }
-        }
-    }
-}
-</code></pre>
-    </div>
-     <div class="col-lg-5 table-padding">
-    <table class="table table-hover table-sm">
-        <thead>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-            <th>#</th>
-            <th>Mutator</th>
-            <th>State</th>
-            <th>Location</th>
-            <th>Original</th>
-            <th>Replacement</th>
+            <td>DotFormatter.php</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:50%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">50%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:95%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">95%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:52%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                52%
+            </td>
+            <td class="text-center">
+                11
+            </td>
+            <td class="text-center">
+                10
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>11</strong>
+            </td>
+            <td class="text-center">
+                <strong>11</strong>
+            </td>
+            <td class="text-center">
+                <strong>22</strong>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-            <tr>
-    <td><strong>0</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>61</td>
-</tr>
-<tr>
-    <td><strong>1</strong></td>
-    <td>Modulus</td>
-    <td>Escaped</td>
-    <td>101</td>
-</tr>
-<tr>
-    <td><strong>2</strong></td>
-    <td>DecrementInteger</td>
-    <td>Escaped</td>
-    <td>102</td>
-</tr>
-<tr>
-    <td><strong>3</strong></td>
-    <td>LogicalNot</td>
-    <td>Escaped</td>
-    <td>105</td>
-</tr>
-<tr>
-    <td><strong>4</strong></td>
-    <td>Minus</td>
-    <td>Escaped</td>
-    <td>106</td>
-</tr>
-<tr>
-    <td><strong>5</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>106</td>
-</tr>
-<tr>
-    <td><strong>6</strong></td>
-    <td>LogicalOr</td>
-    <td>Escaped</td>
-    <td>109</td>
-</tr>
-<tr>
-    <td><strong>7</strong></td>
-    <td>CastString</td>
-    <td>Escaped</td>
-    <td>110</td>
-</tr>
-<tr>
-    <td><strong>8</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>113</td>
-</tr>
-<tr>
-    <td><strong>9</strong></td>
-    <td>NotIdentical</td>
-    <td>Escaped</td>
-    <td>115</td>
-</tr>
-<tr>
-    <td><strong>10</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>63</td>
-</tr>
-<tr>
-    <td><strong>11</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>76</td>
-</tr>
-<tr>
-    <td><strong>12</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>80</td>
-</tr>
-<tr>
-    <td><strong>13</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>84</td>
-</tr>
-<tr>
-    <td><strong>14</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>88</td>
-</tr>
-<tr>
-    <td><strong>15</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>92</td>
-</tr>
-<tr>
-    <td><strong>16</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>96</td>
-</tr>
-<tr>
-    <td><strong>17</strong></td>
-    <td>Identical</td>
-    <td>Killed</td>
-    <td>102</td>
-</tr>
-<tr>
-    <td><strong>18</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Killed</td>
-    <td>102</td>
-</tr>
-<tr>
-    <td><strong>19</strong></td>
-    <td>Identical</td>
-    <td>Killed</td>
-    <td>103</td>
-</tr>
-<tr>
-    <td><strong>20</strong></td>
-    <td>LogicalAnd</td>
-    <td>Killed</td>
-    <td>105</td>
-</tr>
-<tr>
-    <td><strong>21</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>116</td>
-</tr>
-        </tbody>
-    </table>
-</div>
-</div>
+    </tbody>
+</table>
+                </div>
+            </div>
+
+            
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

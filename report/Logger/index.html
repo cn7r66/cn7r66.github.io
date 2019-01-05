@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Logger - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,302 +11,444 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">Logger<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../">All files</a></li>
-<li class="breadcrumb-item active">Logger</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+    <li class="breadcrumb-item active">Logger</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>Logger</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 36%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">36%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 57%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">57%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 62%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">62%</td>
-    <td class="text-center">76</td>
-    <td class="text-center">45</td>
-    <td class="text-center">0</td>
-    <td class="text-center">89</td>
-    <td class="text-center">0</td>
-    <th class="text-center">76</th>
-    <th class="text-center">134</th>
-    <th class="text-center">210</th>
-</tr>
-<tr>
-    <td><a href="Html/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Html</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">25%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 47%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">47%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 53%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">53%</td>
-    <td class="text-center">42</td>
-    <td class="text-center">37</td>
-    <td class="text-center">0</td>
-    <td class="text-center">89</td>
-    <td class="text-center">0</td>
-    <th class="text-center">42</th>
-    <th class="text-center">126</th>
-    <th class="text-center">168</th>
-</tr>
-<tr>
-    <td><a href="BadgeLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">BadgeLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 65%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">65%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 65%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">65%</td>
-    <td class="text-center">13</td>
-    <td class="text-center">7</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">13</th>
-    <th class="text-center">7</th>
-    <th class="text-center">20</th>
-</tr>
-<tr>
-    <td><a href="DebugFileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">DebugFileLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">2</th>
-    <th class="text-center">0</th>
-    <th class="text-center">2</th>
-</tr>
-<tr>
-    <td><a href="FileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">FileLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">7</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">7</th>
-    <th class="text-center">0</th>
-    <th class="text-center">7</th>
-</tr>
-<tr>
-    <td><a href="HtmlLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">HtmlLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">2</th>
-    <th class="text-center">0</th>
-    <th class="text-center">2</th>
-</tr>
-<tr>
-    <td><a href="PerMutatorLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">PerMutatorLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">80%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">80%</td>
-    <td class="text-center">4</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">4</th>
-    <th class="text-center">1</th>
-    <th class="text-center">5</th>
-</tr>
-<tr>
-    <td><a href="TextFileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">TextFileLogger.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">6</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">6</th>
-    <th class="text-center">0</th>
-    <th class="text-center">6</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Logger</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:81%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">81%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:87%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">87%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:92%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                92%
+            </td>
+            <td class="text-center">
+                200
+            </td>
+            <td class="text-center">
+                16
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                31
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                <strong>203</strong>
+            </td>
+            <td class="text-center">
+                <strong>47</strong>
+            </td>
+            <td class="text-center">
+                <strong>250</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Report/index.html"><img src="../.img/directory.svg" class="icon" alt="File/Directory Icon">Report</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:81%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">81%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:85%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">85%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:95%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                95%
+            </td>
+            <td class="text-center">
+                166
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                31
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                <strong>169</strong>
+            </td>
+            <td class="text-center">
+                <strong>39</strong>
+            </td>
+            <td class="text-center">
+                <strong>208</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="BadgeLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">BadgeLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:65%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">65%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:65%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                65%
+            </td>
+            <td class="text-center">
+                13
+            </td>
+            <td class="text-center">
+                7
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>13</strong>
+            </td>
+            <td class="text-center">
+                <strong>7</strong>
+            </td>
+            <td class="text-center">
+                <strong>20</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="DebugFileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">DebugFileLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="FileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">FileLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                7
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>7</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>7</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="PerMutatorLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">PerMutatorLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:80%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">80%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:80%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                80%
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>4</strong>
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+            <td class="text-center">
+                <strong>5</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="ReportLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">ReportLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="TextFileLogger.php.html"><img src="../.img/file.svg" class="icon" alt="File/Directory Icon">TextFileLogger.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                6
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>6</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>6</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+            </div>
 
             
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

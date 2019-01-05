@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Util - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,274 +11,398 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">Util<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../../">All files</a></li>
-<li class="breadcrumb-item "><a href="../">Mutator</a></li>
-<li class="breadcrumb-item active">Util</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="../index.html">Mutator</a></li>
+    <li class="breadcrumb-item active">Util</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>Util</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">96%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">96%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">62</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <th class="text-center">62</th>
-    <th class="text-center">2</th>
-    <th class="text-center">64</th>
-</tr>
-<tr>
-    <td><a href="AbstractValueToNullReturnValue.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">AbstractValueToNullReturnValue.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-<tr>
-    <td><a href="InterfaceParentTrait.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">InterfaceParentTrait.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">2</th>
-    <th class="text-center">0</th>
-    <th class="text-center">2</th>
-</tr>
-<tr>
-    <td><a href="Mutator.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">Mutator.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-<tr>
-    <td><a href="MutatorConfig.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorConfig.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-<tr>
-    <td><a href="MutatorParser.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorParser.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">8</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">8</th>
-    <th class="text-center">0</th>
-    <th class="text-center">8</th>
-</tr>
-<tr>
-    <td><a href="MutatorsGenerator.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorsGenerator.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 93%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">93%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 93%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">93%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">28</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">2</td>
-    <td class="text-center">0</td>
-    <th class="text-center">28</th>
-    <th class="text-center">2</th>
-    <th class="text-center">30</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Util</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:96%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">96%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:96%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">96%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                62
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>62</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>64</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="AbstractValueToNullReturnValue.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">AbstractValueToNullReturnValue.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="InterfaceParentTrait.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">InterfaceParentTrait.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Mutator.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">Mutator.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="MutatorConfig.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorConfig.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="MutatorParser.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorParser.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>8</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="MutatorsGenerator.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">MutatorsGenerator.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:93%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">93%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:93%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">93%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                28
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>28</strong>
+            </td>
+            <td class="text-center">
+                <strong>2</strong>
+            </td>
+            <td class="text-center">
+                <strong>30</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+            </div>
 
             
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

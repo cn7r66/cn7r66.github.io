@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SelfUpdateCommand.php - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,801 +11,116 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">SelfUpdateCommand.php<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../index.html">All files</a></li>
-<li class="breadcrumb-item "><a href="index.html">Command</a></li>
-<li class="breadcrumb-item active">SelfUpdateCommand.php</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="index.html">Command</a></li>
+    <li class="breadcrumb-item active">SelfUpdateCommand.php</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>SelfUpdateCommand.php</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">0%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">0%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-danger">0%</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">67</td>
-    <td class="text-center">0</td>
-    <th class="text-center">0</th>
-    <th class="text-center">67</th>
-    <th class="text-center">67</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-            <div class="row">
-    <div class="col-lg-7">
-        <pre><code class="lang-php">&lt;?php
-/**
- * This code is licensed under the BSD 3-Clause License.
- *
- * Copyright (c) 2017-2018, Maks Rafalko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-declare(strict_types=1);
-
-namespace Infection\Command;
-
-use Humbug\SelfUpdate\Strategy\GithubStrategy;
-use Humbug\SelfUpdate\Updater;
-use Humbug\SelfUpdate\VersionParser;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
-
-/**
- * @internal
- */
-final class SelfUpdateCommand extends Command
-{
-    private const PACKAGE_NAME = 'infection/infection';
-    private const FILE_NAME = 'infection.phar';
-
-    /**
-     * @var OutputInterface
-     */
-    private $output;
-
-    /**
-     * @var string
-     */
-    private $version;
-
-    protected function configure(): void
-    {
-        $this-&gt;setName('self-update')
-            -&gt;setDescription('Update infection.phar to most recent stable or pre-release build.')
-            -&gt;addOption(
-                'pre',
-                'p',
-                InputOption::VALUE_NONE,
-                'Update to most recent pre-release version of Infection (alpha/beta/rc) tagged on Github.'
-            )
-            -&gt;addOption(
-                'stable',
-                's',
-                InputOption::VALUE_NONE,
-                'Update to most recent stable version tagged on Github.'
-            )
-            -&gt;addOption(
-                'rollback',
-                'r',
-                InputOption::VALUE_NONE,
-                'Rollback to previous version of Infection if available on filesystem.'
-            )
-            -&gt;addOption(
-                'check',
-                'c',
-                InputOption::VALUE_NONE,
-                'Checks what updates are available across all possible stability tracks.'
-            )
-        ;
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $this-&gt;output = $output;
-        $this-&gt;version = $this-&gt;getApplication()-&gt;getVersion();
-        $parser = new VersionParser();
-
-        if ($input-&gt;getOption('rollback')) {
-            $this-&gt;rollback();
-
-            return 0;
-        }
-
-        if ($input-&gt;getOption('check')) {
-            $this-&gt;printAvailableUpdates();
-
-            return 0;
-        }
-
-        if ($input-&gt;getOption('pre')) {
-            $this-&gt;updateToPreReleaseBuild();
-
-            return 0;
-        }
-
-        if ($input-&gt;getOption('stable')) {
-            $this-&gt;updateToStableBuild();
-
-            return 0;
-        }
-
-        /*
-         * If current build is stable, only update to more recent stable
-         * versions if available. User may specify otherwise using options.
-         */
-        if ($parser-&gt;isStable($this-&gt;version)) {
-            $this-&gt;updateToStableBuild();
-
-            return 0;
-        }
-
-        $output-&gt;writeln('Please choose what version do you want to update to.');
-
-        return 1;
-    }
-
-    protected function getStableUpdater(): Updater
-    {
-        $updater = new Updater();
-        $updater-&gt;setStrategy(Updater::STRATEGY_GITHUB);
-
-        return $this-&gt;getGithubReleasesUpdater($updater);
-    }
-
-    protected function getPreReleaseUpdater(): Updater
-    {
-        $updater = new Updater();
-        $updater-&gt;setStrategy(Updater::STRATEGY_GITHUB);
-        $updater-&gt;getStrategy()-&gt;setStability(GithubStrategy::UNSTABLE);
-
-        return $this-&gt;getGithubReleasesUpdater($updater);
-    }
-
-    protected function getGithubReleasesUpdater(Updater $updater): Updater
-    {
-        $updater-&gt;getStrategy()-&gt;setPackageName(self::PACKAGE_NAME);
-        $updater-&gt;getStrategy()-&gt;setPharName(self::FILE_NAME);
-        $updater-&gt;getStrategy()-&gt;setCurrentLocalVersion($this-&gt;version);
-
-        return $updater;
-    }
-
-    protected function updateToStableBuild(): void
-    {
-        $this-&gt;update($this-&gt;getStableUpdater());
-    }
-
-    protected function updateToPreReleaseBuild(): void
-    {
-        $this-&gt;update($this-&gt;getPreReleaseUpdater());
-    }
-
-    protected function update(Updater $updater): void
-    {
-        $this-&gt;output-&gt;writeln('Updating...' . PHP_EOL);
-
-        try {
-            $result = $updater-&gt;update();
-
-            $oldVersion = $updater-&gt;getOldVersion();
-
-            if ($result) {
-                $newVersion = $updater-&gt;getNewVersion();
-
-                $this-&gt;output-&gt;writeln('&lt;fg=green&gt;Infection has been updated.&lt;/fg=green&gt;');
-                $this-&gt;output-&gt;writeln(sprintf(
-                    '&lt;fg=green&gt;Current version is:&lt;/fg=green&gt; &lt;options=bold&gt;%s&lt;/options=bold&gt;.',
-                    $newVersion
-                ));
-                $this-&gt;output-&gt;writeln(sprintf(
-                    '&lt;fg=green&gt;Previous version was:&lt;/fg=green&gt; &lt;options=bold&gt;%s&lt;/options=bold&gt;.',
-                    $oldVersion
-                ));
-            } else {
-                $this-&gt;output-&gt;writeln('&lt;fg=green&gt;Infection is currently up to date.&lt;/fg=green&gt;');
-                $this-&gt;output-&gt;writeln(sprintf(
-                    '&lt;fg=green&gt;Current version is:&lt;/fg=green&gt; &lt;options=bold&gt;%s&lt;/options=bold&gt;.',
-                    $oldVersion
-                ));
-            }
-        } catch (\Exception $e) {
-            $this-&gt;output-&gt;writeln(sprintf('Error: &lt;fg=yellow&gt;%s&lt;/fg=yellow&gt;', $e-&gt;getMessage()));
-        }
-        $this-&gt;output-&gt;write(PHP_EOL);
-        $this-&gt;output-&gt;writeln('You can also select update stability using --pre (alpha/beta/rc) or --stable.');
-    }
-
-    protected function rollback(): void
-    {
-        $updater = new Updater();
-
-        try {
-            if ($updater-&gt;rollback()) {
-                $this-&gt;output-&gt;writeln('&lt;fg=green&gt;Infection has been rolled back to prior version.&lt;/fg=green&gt;');
-            } else {
-                $this-&gt;output-&gt;writeln('&lt;fg=red&gt;Rollback failed for reasons unknown.&lt;/fg=red&gt;');
-            }
-        } catch (\Exception $e) {
-            $this-&gt;output-&gt;writeln(sprintf('Error: &lt;fg=yellow&gt;%s&lt;/fg=yellow&gt;', $e-&gt;getMessage()));
-        }
-    }
-
-    protected function printAvailableUpdates(): void
-    {
-        $this-&gt;printCurrentLocalVersion();
-        $this-&gt;printCurrentStableVersion();
-        $this-&gt;printCurrentPreReleaseVersion();
-
-        $this-&gt;output-&gt;writeln('You can select update stability using --pre or --stable when self-updating.');
-    }
-
-    protected function printCurrentLocalVersion(): void
-    {
-        $this-&gt;output-&gt;writeln(sprintf(
-            'Your current local build version is: &lt;options=bold&gt;%s&lt;/options=bold&gt;',
-            $this-&gt;version
-        ));
-    }
-
-    protected function printCurrentStableVersion(): void
-    {
-        $this-&gt;printVersion($this-&gt;getStableUpdater());
-    }
-
-    protected function printCurrentPreReleaseVersion(): void
-    {
-        $this-&gt;printVersion($this-&gt;getPreReleaseUpdater());
-    }
-
-    protected function printVersion(Updater $updater): void
-    {
-        $stability = 'stable';
-
-        if ($updater-&gt;getStrategy() instanceof GithubStrategy
-            &amp;&amp; $updater-&gt;getStrategy()-&gt;getStability() === GithubStrategy::UNSTABLE
-        ) {
-            $stability = 'pre-release';
-        }
-
-        try {
-            if ($updater-&gt;hasUpdate()) {
-                $this-&gt;output-&gt;writeln(sprintf(
-                    'The current %s build available remotely is: &lt;options=bold&gt;%s&lt;/options=bold&gt;',
-                    $stability,
-                    $updater-&gt;getNewVersion()
-                ));
-            } elseif (false === $updater-&gt;getNewVersion()) {
-                $this-&gt;output-&gt;writeln(sprintf('There are no %s builds available.', $stability));
-            } else {
-                $this-&gt;output-&gt;writeln(sprintf('You have the current %s build installed.', $stability));
-            }
-        } catch (\Exception $e) {
-            $this-&gt;output-&gt;writeln(sprintf('Error: &lt;fg=yellow&gt;%s&lt;/fg=yellow&gt;', $e-&gt;getMessage()));
-        }
-    }
-}
-</code></pre>
-    </div>
-     <div class="col-lg-5 table-padding">
-    <table class="table table-hover table-sm">
-        <thead>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-            <th>#</th>
-            <th>Mutator</th>
-            <th>State</th>
-            <th>Location</th>
-            <th>Original</th>
-            <th>Replacement</th>
+            <td>SelfUpdateCommand.php</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:0%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-danger">0%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:0%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-danger">0%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:0%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-danger">
+                0%
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                67
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>67</strong>
+            </td>
+            <td class="text-center">
+                <strong>67</strong>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-            <tr>
-    <td><strong>0</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>66</td>
-</tr>
-<tr>
-    <td><strong>1</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>102</td>
-</tr>
-<tr>
-    <td><strong>2</strong></td>
-    <td>DecrementInteger</td>
-    <td>Not Covered</td>
-    <td>104</td>
-</tr>
-<tr>
-    <td><strong>3</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>104</td>
-</tr>
-<tr>
-    <td><strong>4</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>108</td>
-</tr>
-<tr>
-    <td><strong>5</strong></td>
-    <td>DecrementInteger</td>
-    <td>Not Covered</td>
-    <td>110</td>
-</tr>
-<tr>
-    <td><strong>6</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>110</td>
-</tr>
-<tr>
-    <td><strong>7</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>114</td>
-</tr>
-<tr>
-    <td><strong>8</strong></td>
-    <td>DecrementInteger</td>
-    <td>Not Covered</td>
-    <td>116</td>
-</tr>
-<tr>
-    <td><strong>9</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>116</td>
-</tr>
-<tr>
-    <td><strong>10</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>120</td>
-</tr>
-<tr>
-    <td><strong>11</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>122</td>
-</tr>
-<tr>
-    <td><strong>12</strong></td>
-    <td>DecrementInteger</td>
-    <td>Not Covered</td>
-    <td>122</td>
-</tr>
-<tr>
-    <td><strong>13</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>130</td>
-</tr>
-<tr>
-    <td><strong>14</strong></td>
-    <td>DecrementInteger</td>
-    <td>Not Covered</td>
-    <td>132</td>
-</tr>
-<tr>
-    <td><strong>15</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>132</td>
-</tr>
-<tr>
-    <td><strong>16</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>135</td>
-</tr>
-<tr>
-    <td><strong>17</strong></td>
-    <td>IncrementInteger</td>
-    <td>Not Covered</td>
-    <td>137</td>
-</tr>
-<tr>
-    <td><strong>18</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Not Covered</td>
-    <td>137</td>
-</tr>
-<tr>
-    <td><strong>19</strong></td>
-    <td>IntegerNegation</td>
-    <td>Not Covered</td>
-    <td>137</td>
-</tr>
-<tr>
-    <td><strong>20</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>140</td>
-</tr>
-<tr>
-    <td><strong>21</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>143</td>
-</tr>
-<tr>
-    <td><strong>22</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>148</td>
-</tr>
-<tr>
-    <td><strong>23</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>151</td>
-</tr>
-<tr>
-    <td><strong>24</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>152</td>
-</tr>
-<tr>
-    <td><strong>25</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>157</td>
-</tr>
-<tr>
-    <td><strong>26</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>159</td>
-</tr>
-<tr>
-    <td><strong>27</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>160</td>
-</tr>
-<tr>
-    <td><strong>28</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>161</td>
-</tr>
-<tr>
-    <td><strong>29</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>166</td>
-</tr>
-<tr>
-    <td><strong>30</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>168</td>
-</tr>
-<tr>
-    <td><strong>31</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>171</td>
-</tr>
-<tr>
-    <td><strong>32</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>173</td>
-</tr>
-<tr>
-    <td><strong>33</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>176</td>
-</tr>
-<tr>
-    <td><strong>34</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>178</td>
-</tr>
-<tr>
-    <td><strong>35</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>188</td>
-</tr>
-<tr>
-    <td><strong>36</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>189</td>
-</tr>
-<tr>
-    <td><strong>37</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>193</td>
-</tr>
-<tr>
-    <td><strong>38</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>198</td>
-</tr>
-<tr>
-    <td><strong>39</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>199</td>
-</tr>
-<tr>
-    <td><strong>40</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>205</td>
-</tr>
-<tr>
-    <td><strong>41</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>207</td>
-</tr>
-<tr>
-    <td><strong>42</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>208</td>
-</tr>
-<tr>
-    <td><strong>43</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>211</td>
-</tr>
-<tr>
-    <td><strong>44</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>217</td>
-</tr>
-<tr>
-    <td><strong>45</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>219</td>
-</tr>
-<tr>
-    <td><strong>46</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>222</td>
-</tr>
-<tr>
-    <td><strong>47</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>226</td>
-</tr>
-<tr>
-    <td><strong>48</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>228</td>
-</tr>
-<tr>
-    <td><strong>49</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>229</td>
-</tr>
-<tr>
-    <td><strong>50</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>230</td>
-</tr>
-<tr>
-    <td><strong>51</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>232</td>
-</tr>
-<tr>
-    <td><strong>52</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>235</td>
-</tr>
-<tr>
-    <td><strong>53</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>237</td>
-</tr>
-<tr>
-    <td><strong>54</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>243</td>
-</tr>
-<tr>
-    <td><strong>55</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>245</td>
-</tr>
-<tr>
-    <td><strong>56</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>248</td>
-</tr>
-<tr>
-    <td><strong>57</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>250</td>
-</tr>
-<tr>
-    <td><strong>58</strong></td>
-    <td>ProtectedVisibility</td>
-    <td>Not Covered</td>
-    <td>253</td>
-</tr>
-<tr>
-    <td><strong>59</strong></td>
-    <td>LogicalAnd</td>
-    <td>Not Covered</td>
-    <td>257</td>
-</tr>
-<tr>
-    <td><strong>60</strong></td>
-    <td>Identical</td>
-    <td>Not Covered</td>
-    <td>258</td>
-</tr>
-<tr>
-    <td><strong>61</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>265</td>
-</tr>
-<tr>
-    <td><strong>62</strong></td>
-    <td>FalseValue</td>
-    <td>Not Covered</td>
-    <td>270</td>
-</tr>
-<tr>
-    <td><strong>63</strong></td>
-    <td>Identical</td>
-    <td>Not Covered</td>
-    <td>270</td>
-</tr>
-<tr>
-    <td><strong>64</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>271</td>
-</tr>
-<tr>
-    <td><strong>65</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>273</td>
-</tr>
-<tr>
-    <td><strong>66</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Not Covered</td>
-    <td>276</td>
-</tr>
-        </tbody>
-    </table>
-</div>
-</div>
+    </tbody>
+</table>
+                </div>
+            </div>
+
+            
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

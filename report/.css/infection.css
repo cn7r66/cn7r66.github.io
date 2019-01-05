@@ -64,3 +64,36 @@ td.score {
     padding: 5px 10px;
     margin-right: 15px;
 }
+
+.number {
+    font-weight: bold;
+    margin-right: 10px;
+    color: blue;
+}
+
+.code {
+    flex: 1;
+}
+
+.line {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.line .number {
+    width: 35px;
+}
+
+.source {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    background-color: #edebec;
+}
+
+.bg-danger-light {
+    background-color: #f2dede;
+}

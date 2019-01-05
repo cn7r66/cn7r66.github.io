@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>InitialConfigBuilder.php - Infection Report</title>
         <link href="../../../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../../../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,578 +11,119 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">InitialConfigBuilder.php<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../../../../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../../../../index.html">All files</a></li>
-<li class="breadcrumb-item "><a href="../../../index.html">TestFramework</a></li>
-<li class="breadcrumb-item "><a href="../../index.html">PhpUnit</a></li>
-<li class="breadcrumb-item "><a href="../index.html">Config</a></li>
-<li class="breadcrumb-item "><a href="index.html">Builder</a></li>
-<li class="breadcrumb-item active">InitialConfigBuilder.php</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../../../../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="../../../index.html">TestFramework</a></li>
+    <li class="breadcrumb-item "><a href="../../index.html">PhpUnit</a></li>
+    <li class="breadcrumb-item "><a href="../index.html">Config</a></li>
+    <li class="breadcrumb-item "><a href="index.html">Builder</a></li>
+    <li class="breadcrumb-item active">InitialConfigBuilder.php</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>InitialConfigBuilder.php</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 81%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">81%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 81%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">81%</td>
-    <td class="text-center">31</td>
-    <td class="text-center">7</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">31</th>
-    <th class="text-center">7</th>
-    <th class="text-center">38</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-            <div class="row">
-    <div class="col-lg-7">
-        <pre><code class="lang-php">&lt;?php
-/**
- * This code is licensed under the BSD 3-Clause License.
- *
- * Copyright (c) 2017-2018, Maks Rafalko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-declare(strict_types=1);
-
-namespace Infection\TestFramework\PhpUnit\Config\Builder;
-
-use Infection\TestFramework\Config\InitialConfigBuilder as ConfigBuilder;
-use Infection\TestFramework\Coverage\CodeCoverageData;
-use Infection\TestFramework\PhpUnit\Config\XmlConfigurationHelper;
-
-/**
- * @internal
- */
-class InitialConfigBuilder implements ConfigBuilder
-{
-    /**
-     * @var string
-     */
-    private $tmpDir;
-
-    /**
-     * @var string
-     */
-    private $originalXmlConfigContent;
-    /**
-     * @var XmlConfigurationHelper
-     */
-    private $xmlConfigurationHelper;
-
-    /**
-     * @var string
-     */
-    private $jUnitFilePath;
-
-    /**
-     * @var array
-     */
-    private $srcDirs = [];
-
-    /**
-     * @var bool
-     */
-    private $skipCoverage;
-
-    public function __construct(
-        string $tmpDir,
-        string $originalXmlConfigContent,
-        XmlConfigurationHelper $xmlConfigurationHelper,
-        string $jUnitFilePath,
-        array $srcDirs,
-        bool $skipCoverage
-    ) {
-        $this-&gt;tmpDir = $tmpDir;
-        $this-&gt;originalXmlConfigContent = $originalXmlConfigContent;
-        $this-&gt;xmlConfigurationHelper = $xmlConfigurationHelper;
-        $this-&gt;jUnitFilePath = $jUnitFilePath;
-        $this-&gt;srcDirs = $srcDirs;
-        $this-&gt;skipCoverage = $skipCoverage;
-    }
-
-    public function build(string $version): string
-    {
-        $path = $this-&gt;buildPath();
-
-        $dom = new \DOMDocument();
-        $dom-&gt;preserveWhiteSpace = false;
-        $dom-&gt;formatOutput = true;
-        $dom-&gt;loadXML($this-&gt;originalXmlConfigContent);
-
-        $xPath = new \DOMXPath($dom);
-
-        $this-&gt;xmlConfigurationHelper-&gt;validate($dom, $xPath);
-
-        $this-&gt;addCoverageFilterWhitelistIfDoesNotExist($dom, $xPath);
-        $this-&gt;addRandomTestsOrderAttributesIfNotSet($version, $xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;replaceWithAbsolutePaths($xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;setStopOnFailure($xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;deactivateColours($xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;removeCacheResultFile($dom, $xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;removeExistingLoggers($dom, $xPath);
-        $this-&gt;xmlConfigurationHelper-&gt;removeExistingPrinters($dom, $xPath);
-
-        if (!$this-&gt;skipCoverage) {
-            $this-&gt;addCodeCoverageLogger($dom, $xPath);
-            $this-&gt;addJUnitLogger($dom, $xPath);
-        }
-
-        file_put_contents($path, $dom-&gt;saveXML());
-
-        return $path;
-    }
-
-    private function buildPath(): string
-    {
-        return $this-&gt;tmpDir . '/phpunitConfiguration.initial.infection.xml';
-    }
-
-    private function addJUnitLogger(\DOMDocument $dom, \DOMXPath $xPath): void
-    {
-        $logging = $this-&gt;getOrCreateNode($dom, $xPath, 'logging');
-
-        $junitLog = $dom-&gt;createElement('log');
-        $junitLog-&gt;setAttribute('type', 'junit');
-        $junitLog-&gt;setAttribute('target', $this-&gt;jUnitFilePath);
-
-        $logging-&gt;appendChild($junitLog);
-    }
-
-    private function addCodeCoverageLogger(\DOMDocument $dom, \DOMXPath $xPath): void
-    {
-        $logging = $this-&gt;getOrCreateNode($dom, $xPath, 'logging');
-
-        $coverageXmlLog = $dom-&gt;createElement('log');
-        $coverageXmlLog-&gt;setAttribute('type', 'coverage-xml');
-        $coverageXmlLog-&gt;setAttribute('target', $this-&gt;tmpDir . '/' . CodeCoverageData::PHP_UNIT_COVERAGE_DIR);
-
-        $logging-&gt;appendChild($coverageXmlLog);
-    }
-
-    private function addCoverageFilterWhitelistIfDoesNotExist(\DOMDocument $dom, \DOMXPath $xPath): void
-    {
-        $filterNode = $this-&gt;getNode($xPath, 'filter');
-
-        if (!$filterNode) {
-            $filterNode = $this-&gt;createNode($dom, 'filter');
-
-            $whiteListNode = $dom-&gt;createElement('whitelist');
-
-            foreach ($this-&gt;srcDirs as $srcDir) {
-                $directoryNode = $dom-&gt;createElement(
-                    'directory',
-                    $srcDir
-                );
-
-                $whiteListNode-&gt;appendChild($directoryNode);
-            }
-
-            $filterNode-&gt;appendChild($whiteListNode);
-        }
-    }
-
-    private function getOrCreateNode(\DOMDocument $dom, \DOMXPath $xPath, string $nodeName): \DOMElement
-    {
-        $node = $this-&gt;getNode($xPath, $nodeName);
-
-        if (!$node) {
-            $node = $this-&gt;createNode($dom, $nodeName);
-        }
-
-        return $node;
-    }
-
-    private function getNode(\DOMXPath $xPath, string $nodeName)
-    {
-        $nodeList = $xPath-&gt;query(sprintf('/phpunit/%s', $nodeName));
-
-        if ($nodeList-&gt;length) {
-            return $nodeList-&gt;item(0);
-        }
-
-        return null;
-    }
-
-    private function createNode(\DOMDocument $dom, string $nodeName): \DOMElement
-    {
-        $node = $dom-&gt;createElement($nodeName);
-        $dom-&gt;documentElement-&gt;appendChild($node);
-
-        return $node;
-    }
-
-    private function addRandomTestsOrderAttributesIfNotSet(string $version, \DOMXPath $xPath): void
-    {
-        if (!version_compare($version, '7.2', '&gt;=')) {
-            return;
-        }
-
-        if ($this-&gt;addAttributeIfNotSet('executionOrder', 'random', $xPath)) {
-            $this-&gt;addAttributeIfNotSet('resolveDependencies', 'true', $xPath);
-        }
-    }
-
-    private function addAttributeIfNotSet(string $attribute, string $value, \DOMXPath $xPath): bool
-    {
-        $nodeList = $xPath-&gt;query(sprintf('/phpunit/@%s', $attribute));
-
-        if (!$nodeList-&gt;length) {
-            $node = $xPath-&gt;query('/phpunit')[0];
-            $node-&gt;setAttribute($attribute, $value);
-
-            return true;
-        }
-
-        return false;
-    }
-}
-</code></pre>
-    </div>
-     <div class="col-lg-5 table-padding">
-    <table class="table table-hover table-sm">
-        <thead>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-            <th>#</th>
-            <th>Mutator</th>
-            <th>State</th>
-            <th>Location</th>
-            <th>Original</th>
-            <th>Replacement</th>
+            <td>InitialConfigBuilder.php</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:81%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">81%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:81%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                81%
+            </td>
+            <td class="text-center">
+                31
+            </td>
+            <td class="text-center">
+                7
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>31</strong>
+            </td>
+            <td class="text-center">
+                <strong>7</strong>
+            </td>
+            <td class="text-center">
+                <strong>38</strong>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-            <tr>
-    <td><strong>0</strong></td>
-    <td>FalseValue</td>
-    <td>Escaped</td>
-    <td>97</td>
-</tr>
-<tr>
-    <td><strong>1</strong></td>
-    <td>TrueValue</td>
-    <td>Escaped</td>
-    <td>98</td>
-</tr>
-<tr>
-    <td><strong>2</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>103</td>
-</tr>
-<tr>
-    <td><strong>3</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>108</td>
-</tr>
-<tr>
-    <td><strong>4</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>109</td>
-</tr>
-<tr>
-    <td><strong>5</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>110</td>
-</tr>
-<tr>
-    <td><strong>6</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>135</td>
-</tr>
-<tr>
-    <td><strong>7</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>99</td>
-</tr>
-<tr>
-    <td><strong>8</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>105</td>
-</tr>
-<tr>
-    <td><strong>9</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>106</td>
-</tr>
-<tr>
-    <td><strong>10</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>107</td>
-</tr>
-<tr>
-    <td><strong>11</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>111</td>
-</tr>
-<tr>
-    <td><strong>12</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>112</td>
-</tr>
-<tr>
-    <td><strong>13</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>114</td>
-</tr>
-<tr>
-    <td><strong>14</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>115</td>
-</tr>
-<tr>
-    <td><strong>15</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>116</td>
-</tr>
-<tr>
-    <td><strong>16</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Killed</td>
-    <td>119</td>
-</tr>
-<tr>
-    <td><strong>17</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>134</td>
-</tr>
-<tr>
-    <td><strong>18</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>137</td>
-</tr>
-<tr>
-    <td><strong>19</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>145</td>
-</tr>
-<tr>
-    <td><strong>20</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>146</td>
-</tr>
-<tr>
-    <td><strong>21</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>148</td>
-</tr>
-<tr>
-    <td><strong>22</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>155</td>
-</tr>
-<tr>
-    <td><strong>23</strong></td>
-    <td>Foreach_</td>
-    <td>Killed</td>
-    <td>160</td>
-</tr>
-<tr>
-    <td><strong>24</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>166</td>
-</tr>
-<tr>
-    <td><strong>25</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>169</td>
-</tr>
-<tr>
-    <td><strong>26</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>177</td>
-</tr>
-<tr>
-    <td><strong>27</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Killed</td>
-    <td>189</td>
-</tr>
-<tr>
-    <td><strong>28</strong></td>
-    <td>DecrementInteger</td>
-    <td>Killed</td>
-    <td>189</td>
-</tr>
-<tr>
-    <td><strong>29</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>198</td>
-</tr>
-<tr>
-    <td><strong>30</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>205</td>
-</tr>
-<tr>
-    <td><strong>31</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>210</td>
-</tr>
-<tr>
-    <td><strong>32</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>218</td>
-</tr>
-<tr>
-    <td><strong>33</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Killed</td>
-    <td>219</td>
-</tr>
-<tr>
-    <td><strong>34</strong></td>
-    <td>DecrementInteger</td>
-    <td>Killed</td>
-    <td>219</td>
-</tr>
-<tr>
-    <td><strong>35</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>220</td>
-</tr>
-<tr>
-    <td><strong>36</strong></td>
-    <td>TrueValue</td>
-    <td>Killed</td>
-    <td>222</td>
-</tr>
-<tr>
-    <td><strong>37</strong></td>
-    <td>FalseValue</td>
-    <td>Killed</td>
-    <td>225</td>
-</tr>
-        </tbody>
-    </table>
-</div>
-</div>
+    </tbody>
+</table>
+                </div>
+            </div>
+
+            
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../../../../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

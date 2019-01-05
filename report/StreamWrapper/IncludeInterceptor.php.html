@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IncludeInterceptor.php - Infection Report</title>
         <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,982 +11,116 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">IncludeInterceptor.php<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../index.html">All files</a></li>
-<li class="breadcrumb-item "><a href="index.html">StreamWrapper</a></li>
-<li class="breadcrumb-item active">IncludeInterceptor.php</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="index.html">StreamWrapper</a></li>
+    <li class="breadcrumb-item active">IncludeInterceptor.php</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>IncludeInterceptor.php</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 59%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">59%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 98%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">98%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">60%</td>
-    <td class="text-center">44</td>
-    <td class="text-center">38</td>
-    <td class="text-center">2</td>
-    <td class="text-center">1</td>
-    <td class="text-center">11</td>
-    <th class="text-center">57</th>
-    <th class="text-center">39</th>
-    <th class="text-center">96</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-            <div class="row">
-    <div class="col-lg-7">
-        <pre><code class="lang-php">&lt;?php
-/**
- * This code is licensed under the BSD 3-Clause License.
- *
- * Copyright (c) 2017-2018, Maks Rafalko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-declare(strict_types=1);
-
-namespace Infection\StreamWrapper;
-
-/**
- * @internal
- */
-final class IncludeInterceptor
-{
-    private const STREAM_OPEN_FOR_INCLUDE = 0x00000080;
-
-    /**
-     * @var resource
-     */
-    public $context;
-
-    /**
-     * @var bool|resource
-     */
-    private $fp;
-
-    /**
-     * @var string
-     */
-    private static $intercept;
-
-    /**
-     * @var string
-     */
-    private static $replacement;
-
-    public static function intercept($file, $with): void
-    {
-        if (!file_exists($file)) {
-            throw new \InvalidArgumentException(
-                'File to intercept and replace does not exist: ' . $file
-            );
-        }
-
-        if (!file_exists($with)) {
-            throw new \InvalidArgumentException(
-                'File to replace intercepted file with does not exist: ' . $file
-            );
-        }
-        self::$intercept = $file;
-        self::$replacement = $with;
-    }
-
-    public static function enable(): void
-    {
-        if (!isset(self::$intercept) || !isset(self::$replacement)) {
-            throw new \RuntimeException(
-                'Set a file to intercept and its replacement before enabling wrapper'
-            );
-        }
-        stream_wrapper_unregister('file');
-        stream_wrapper_register('file', __CLASS__);
-    }
-
-    public static function disable(): void
-    {
-        stream_wrapper_restore('file');
-    }
-
-    public function stream_open($path, $mode, $options)
-    {
-        self::disable();
-        $including = (bool) ($options &amp; self::STREAM_OPEN_FOR_INCLUDE);
-
-        if ($including) {
-            if ($path === self::$intercept || realpath($path) === self::$intercept) {
-                $this-&gt;fp = fopen(self::$replacement, 'rb');
-                self::enable();
-
-                return true;
-            }
-        }
-
-        if (isset($this-&gt;context)) {
-            $this-&gt;fp = fopen($path, $mode, (bool) $options, $this-&gt;context);
-        } else {
-            $this-&gt;fp = fopen($path, $mode, (bool) $options);
-        }
-        self::enable();
-
-        return $this-&gt;fp !== false;
-    }
-
-    public function dir_closedir()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        closedir($this-&gt;fp);
-
-        return true;
-    }
-
-    public function dir_opendir($path)
-    {
-        self::disable();
-
-        if (isset($this-&gt;context)) {
-            $this-&gt;fp = opendir($path, $this-&gt;context);
-        } else {
-            $this-&gt;fp = opendir($path);
-        }
-        self::enable();
-
-        return $this-&gt;fp !== false;
-    }
-
-    public function dir_readdir()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return readdir($this-&gt;fp);
-    }
-
-    public function dir_rewinddir()
-    {
-        \assert(\is_resource($this-&gt;fp));
-        rewinddir($this-&gt;fp);
-
-        return true;
-    }
-
-    public function mkdir($path, $mode, $options)
-    {
-        self::disable();
-
-        $isRecursive = (bool) ($options &amp; STREAM_MKDIR_RECURSIVE);
-
-        if (isset($this-&gt;context)) {
-            $return = mkdir($path, $mode, $isRecursive, $this-&gt;context);
-        } else {
-            $return = mkdir($path, $mode, $isRecursive);
-        }
-        self::enable();
-
-        return $return;
-    }
-
-    public function rename($path_from, $path_to)
-    {
-        self::disable();
-
-        if (isset($this-&gt;context)) {
-            $return = rename($path_from, $path_to, $this-&gt;context);
-        } else {
-            $return = rename($path_from, $path_to);
-        }
-        self::enable();
-
-        return $return;
-    }
-
-    public function rmdir($path)
-    {
-        self::disable();
-
-        if (isset($this-&gt;context)) {
-            $return = rmdir($path, $this-&gt;context);
-        } else {
-            $return = rmdir($path);
-        }
-        self::enable();
-
-        return $return;
-    }
-
-    public function stream_cast()
-    {
-        return $this-&gt;fp;
-    }
-
-    public function stream_close()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fclose($this-&gt;fp);
-    }
-
-    public function stream_eof()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return feof($this-&gt;fp);
-    }
-
-    public function stream_flush()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fflush($this-&gt;fp);
-    }
-
-    public function stream_lock($operation)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return flock($this-&gt;fp, $operation);
-    }
-
-    public function stream_metadata($path, $option, $value)
-    {
-        self::disable();
-
-        switch ($option) {
-            case STREAM_META_TOUCH:
-                if (empty($value)) {
-                    $return = touch($path);
-                } else {
-                    $return = touch($path, $value[0], $value[1]);
-                }
-
-                break;
-            case STREAM_META_OWNER_NAME:
-            case STREAM_META_OWNER:
-                $return = chown($path, $value);
-
-                break;
-            case STREAM_META_GROUP_NAME:
-            case STREAM_META_GROUP:
-                $return = chgrp($path, $value);
-
-                break;
-            case STREAM_META_ACCESS:
-                $return = chmod($path, $value);
-
-                break;
-            default:
-                throw new \RuntimeException('Unknown stream_metadata option');
-        }
-        self::enable();
-
-        return $return;
-    }
-
-    public function stream_read($count)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fread($this-&gt;fp, $count);
-    }
-
-    public function stream_seek($offset, $whence = SEEK_SET)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fseek($this-&gt;fp, $offset, $whence) === 0;
-    }
-
-    public function stream_set_option($option, $arg1, $arg2)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        switch ($option) {
-            case STREAM_OPTION_BLOCKING:
-                return stream_set_blocking($this-&gt;fp, (bool) $arg1);
-            case STREAM_OPTION_READ_TIMEOUT:
-                return stream_set_timeout($this-&gt;fp, $arg1, $arg2);
-            case STREAM_OPTION_WRITE_BUFFER:
-                return stream_set_write_buffer($this-&gt;fp, $arg1);
-            case STREAM_OPTION_READ_BUFFER:
-                return stream_set_read_buffer($this-&gt;fp, $arg1);
-        }
-    }
-
-    public function stream_stat()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fstat($this-&gt;fp);
-    }
-
-    public function stream_tell()
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return ftell($this-&gt;fp);
-    }
-
-    public function stream_truncate($new_size)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return ftruncate($this-&gt;fp, $new_size);
-    }
-
-    public function stream_write($data)
-    {
-        \assert(\is_resource($this-&gt;fp));
-
-        return fwrite($this-&gt;fp, $data);
-    }
-
-    public function unlink($path)
-    {
-        self::disable();
-
-        if (isset($this-&gt;context)) {
-            $return = unlink($path, $this-&gt;context);
-        } else {
-            $return = unlink($path);
-        }
-        self::enable();
-
-        return $return;
-    }
-
-    public function url_stat($path)
-    {
-        self::disable();
-        $return = is_readable($path) ? stat($path) : false;
-        self::enable();
-
-        return $return;
-    }
-}
-</code></pre>
-    </div>
-     <div class="col-lg-5 table-padding">
-    <table class="table table-hover table-sm">
-        <thead>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-            <th>#</th>
-            <th>Mutator</th>
-            <th>State</th>
-            <th>Location</th>
-            <th>Original</th>
-            <th>Replacement</th>
+            <td>IncludeInterceptor.php</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:59%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">59%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:98%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">98%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:60%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                60%
+            </td>
+            <td class="text-center">
+                44
+            </td>
+            <td class="text-center">
+                38
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                11
+            </td>
+            <td class="text-center">
+                <strong>57</strong>
+            </td>
+            <td class="text-center">
+                <strong>39</strong>
+            </td>
+            <td class="text-center">
+                <strong>96</strong>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-            <tr>
-    <td><strong>0</strong></td>
-    <td>Throw_</td>
-    <td>Escaped</td>
-    <td>68</td>
-</tr>
-<tr>
-    <td><strong>1</strong></td>
-    <td>LogicalOr</td>
-    <td>Escaped</td>
-    <td>84</td>
-</tr>
-<tr>
-    <td><strong>2</strong></td>
-    <td>CastBool</td>
-    <td>Escaped</td>
-    <td>101</td>
-</tr>
-<tr>
-    <td><strong>3</strong></td>
-    <td>LogicalOr</td>
-    <td>Escaped</td>
-    <td>104</td>
-</tr>
-<tr>
-    <td><strong>4</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>106</td>
-</tr>
-<tr>
-    <td><strong>5</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>117</td>
-</tr>
-<tr>
-    <td><strong>6</strong></td>
-    <td>FalseValue</td>
-    <td>Escaped</td>
-    <td>119</td>
-</tr>
-<tr>
-    <td><strong>7</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Escaped</td>
-    <td>126</td>
-</tr>
-<tr>
-    <td><strong>8</strong></td>
-    <td>TrueValue</td>
-    <td>Escaped</td>
-    <td>128</td>
-</tr>
-<tr>
-    <td><strong>9</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>140</td>
-</tr>
-<tr>
-    <td><strong>10</strong></td>
-    <td>FalseValue</td>
-    <td>Escaped</td>
-    <td>142</td>
-</tr>
-<tr>
-    <td><strong>11</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>149</td>
-</tr>
-<tr>
-    <td><strong>12</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Escaped</td>
-    <td>155</td>
-</tr>
-<tr>
-    <td><strong>13</strong></td>
-    <td>TrueValue</td>
-    <td>Escaped</td>
-    <td>157</td>
-</tr>
-<tr>
-    <td><strong>14</strong></td>
-    <td>BitwiseAnd</td>
-    <td>Escaped</td>
-    <td>164</td>
-</tr>
-<tr>
-    <td><strong>15</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>171</td>
-</tr>
-<tr>
-    <td><strong>16</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>185</td>
-</tr>
-<tr>
-    <td><strong>17</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>199</td>
-</tr>
-<tr>
-    <td><strong>18</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>213</td>
-</tr>
-<tr>
-    <td><strong>19</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>220</td>
-</tr>
-<tr>
-    <td><strong>20</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>227</td>
-</tr>
-<tr>
-    <td><strong>21</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>234</td>
-</tr>
-<tr>
-    <td><strong>22</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Escaped</td>
-    <td>246</td>
-</tr>
-<tr>
-    <td><strong>23</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Escaped</td>
-    <td>246</td>
-</tr>
-<tr>
-    <td><strong>24</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>267</td>
-</tr>
-<tr>
-    <td><strong>25</strong></td>
-    <td>OneZeroInteger</td>
-    <td>Escaped</td>
-    <td>283</td>
-</tr>
-<tr>
-    <td><strong>26</strong></td>
-    <td>Identical</td>
-    <td>Escaped</td>
-    <td>283</td>
-</tr>
-<tr>
-    <td><strong>27</strong></td>
-    <td>DecrementInteger</td>
-    <td>Escaped</td>
-    <td>283</td>
-</tr>
-<tr>
-    <td><strong>28</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>292</td>
-</tr>
-<tr>
-    <td><strong>29</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>294</td>
-</tr>
-<tr>
-    <td><strong>30</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>296</td>
-</tr>
-<tr>
-    <td><strong>31</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>298</td>
-</tr>
-<tr>
-    <td><strong>32</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>306</td>
-</tr>
-<tr>
-    <td><strong>33</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>313</td>
-</tr>
-<tr>
-    <td><strong>34</strong></td>
-    <td>FunctionCall</td>
-    <td>Escaped</td>
-    <td>327</td>
-</tr>
-<tr>
-    <td><strong>35</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>339</td>
-</tr>
-<tr>
-    <td><strong>36</strong></td>
-    <td>FalseValue</td>
-    <td>Escaped</td>
-    <td>347</td>
-</tr>
-<tr>
-    <td><strong>37</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Escaped</td>
-    <td>348</td>
-</tr>
-<tr>
-    <td><strong>38</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>65</td>
-</tr>
-<tr>
-    <td><strong>39</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>67</td>
-</tr>
-<tr>
-    <td><strong>40</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>73</td>
-</tr>
-<tr>
-    <td><strong>41</strong></td>
-    <td>Throw_</td>
-    <td>Killed</td>
-    <td>74</td>
-</tr>
-<tr>
-    <td><strong>42</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>82</td>
-</tr>
-<tr>
-    <td><strong>43</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>84</td>
-</tr>
-<tr>
-    <td><strong>44</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>84</td>
-</tr>
-<tr>
-    <td><strong>45</strong></td>
-    <td>Throw_</td>
-    <td>Killed</td>
-    <td>85</td>
-</tr>
-<tr>
-    <td><strong>46</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Killed</td>
-    <td>89</td>
-</tr>
-<tr>
-    <td><strong>47</strong></td>
-    <td>BitwiseAnd</td>
-    <td>Killed</td>
-    <td>101</td>
-</tr>
-<tr>
-    <td><strong>48</strong></td>
-    <td>Identical</td>
-    <td>Killed</td>
-    <td>104</td>
-</tr>
-<tr>
-    <td><strong>49</strong></td>
-    <td>Identical</td>
-    <td>Killed</td>
-    <td>104</td>
-</tr>
-<tr>
-    <td><strong>50</strong></td>
-    <td>TrueValue</td>
-    <td>Killed</td>
-    <td>108</td>
-</tr>
-<tr>
-    <td><strong>51</strong></td>
-    <td>CastBool</td>
-    <td>Killed</td>
-    <td>113</td>
-</tr>
-<tr>
-    <td><strong>52</strong></td>
-    <td>CastBool</td>
-    <td>Killed</td>
-    <td>115</td>
-</tr>
-<tr>
-    <td><strong>53</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>122</td>
-</tr>
-<tr>
-    <td><strong>54</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>131</td>
-</tr>
-<tr>
-    <td><strong>55</strong></td>
-    <td>MethodCallRemoval</td>
-    <td>Killed</td>
-    <td>133</td>
-</tr>
-<tr>
-    <td><strong>56</strong></td>
-    <td>NotIdentical</td>
-    <td>Killed</td>
-    <td>142</td>
-</tr>
-<tr>
-    <td><strong>57</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>145</td>
-</tr>
-<tr>
-    <td><strong>58</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>152</td>
-</tr>
-<tr>
-    <td><strong>59</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>160</td>
-</tr>
-<tr>
-    <td><strong>60</strong></td>
-    <td>CastBool</td>
-    <td>Killed</td>
-    <td>164</td>
-</tr>
-<tr>
-    <td><strong>61</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>176</td>
-</tr>
-<tr>
-    <td><strong>62</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>190</td>
-</tr>
-<tr>
-    <td><strong>63</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>204</td>
-</tr>
-<tr>
-    <td><strong>64</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>209</td>
-</tr>
-<tr>
-    <td><strong>65</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>216</td>
-</tr>
-<tr>
-    <td><strong>66</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>223</td>
-</tr>
-<tr>
-    <td><strong>67</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>230</td>
-</tr>
-<tr>
-    <td><strong>68</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>237</td>
-</tr>
-<tr>
-    <td><strong>69</strong></td>
-    <td>IncrementInteger</td>
-    <td>Killed</td>
-    <td>246</td>
-</tr>
-<tr>
-    <td><strong>70</strong></td>
-    <td>DecrementInteger</td>
-    <td>Killed</td>
-    <td>246</td>
-</tr>
-<tr>
-    <td><strong>71</strong></td>
-    <td>FunctionCall</td>
-    <td>Killed</td>
-    <td>276</td>
-</tr>
-<tr>
-    <td><strong>72</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>279</td>
-</tr>
-<tr>
-    <td><strong>73</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>286</td>
-</tr>
-<tr>
-    <td><strong>74</strong></td>
-    <td>CastBool</td>
-    <td>Killed</td>
-    <td>292</td>
-</tr>
-<tr>
-    <td><strong>75</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>302</td>
-</tr>
-<tr>
-    <td><strong>76</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>309</td>
-</tr>
-<tr>
-    <td><strong>77</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>316</td>
-</tr>
-<tr>
-    <td><strong>78</strong></td>
-    <td>FunctionCall</td>
-    <td>Killed</td>
-    <td>320</td>
-</tr>
-<tr>
-    <td><strong>79</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>323</td>
-</tr>
-<tr>
-    <td><strong>80</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>330</td>
-</tr>
-<tr>
-    <td><strong>81</strong></td>
-    <td>PublicVisibility</td>
-    <td>Killed</td>
-    <td>344</td>
-</tr>
-<tr>
-    <td><strong>82</strong></td>
-    <td>PublicVisibility</td>
-    <td>Timeout</td>
-    <td>98</td>
-</tr>
-<tr>
-    <td><strong>83</strong></td>
-    <td>PublicVisibility</td>
-    <td>Timeout</td>
-    <td>272</td>
-</tr>
-<tr>
-    <td><strong>84</strong></td>
-    <td>Throw_</td>
-    <td>Not Covered</td>
-    <td>265</td>
-</tr>
-        </tbody>
-    </table>
-</div>
-</div>
+    </tbody>
+</table>
+                </div>
+            </div>
+
+            
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

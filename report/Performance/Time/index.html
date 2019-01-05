@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Time - Infection Report</title>
         <link href="../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,158 +11,210 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">Time<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../../">All files</a></li>
-<li class="breadcrumb-item "><a href="../">Performance</a></li>
-<li class="breadcrumb-item active">Time</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="../index.html">Performance</a></li>
+    <li class="breadcrumb-item active">Time</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>Time</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 95%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">95%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 95%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">95%</td>
-    <td class="text-center">21</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">21</th>
-    <th class="text-center">1</th>
-    <th class="text-center">22</th>
-</tr>
-<tr>
-    <td><a href="TimeFormatter.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">TimeFormatter.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td class="text-center">15</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">15</th>
-    <th class="text-center">0</th>
-    <th class="text-center">15</th>
-</tr>
-<tr>
-    <td><a href="Timer.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">Timer.php</a></td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 85%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">85%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 85%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">85%</td>
-    <td class="text-center">6</td>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">6</th>
-    <th class="text-center">1</th>
-    <th class="text-center">7</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Time</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:95%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">95%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:95%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                95%
+            </td>
+            <td class="text-center">
+                21
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>21</strong>
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+            <td class="text-center">
+                <strong>22</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="TimeFormatter.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">TimeFormatter.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">
+                100%
+            </td>
+            <td class="text-center">
+                15
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>15</strong>
+            </td>
+            <td class="text-center">
+                <strong>0</strong>
+            </td>
+            <td class="text-center">
+                <strong>15</strong>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="Timer.php.html"><img src="../../.img/file.svg" class="icon" alt="File/Directory Icon">Timer.php</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:85%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">85%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:85%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                85%
+            </td>
+            <td class="text-center">
+                6
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>6</strong>
+            </td>
+            <td class="text-center">
+                <strong>1</strong>
+            </td>
+            <td class="text-center">
+                <strong>7</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+            </div>
 
             
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MutationConfigBuilder.php - Infection Report</title>
         <link href="../../../../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="../../../../.css/highlight.css" rel="stylesheet" type="text/css">
@@ -10,297 +11,119 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-11">
+                <div class="col-11">
                     <h1 class="display-4 node-name">MutationConfigBuilder.php<small class="text-muted"> - Infection Report</small></h1>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <img src="../../../../.img/infection.png" class="img-fluid logo" alt="Report Logo">
                 </div>
             </div>
 
             <div class="row">
-	<div class="col-lg-12">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item "><a href="../../../../index.html">All files</a></li>
-<li class="breadcrumb-item "><a href="../../../index.html">TestFramework</a></li>
-<li class="breadcrumb-item "><a href="../../index.html">PhpSpec</a></li>
-<li class="breadcrumb-item "><a href="../index.html">Config</a></li>
-<li class="breadcrumb-item "><a href="index.html">Builder</a></li>
-<li class="breadcrumb-item active">MutationConfigBuilder.php</li>
-		</ol>
-	</div>
-</div>
+                <div class="col-12">
+                    <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="../../../../index.html">All files</a></li>
+    <li class="breadcrumb-item "><a href="../../../index.html">TestFramework</a></li>
+    <li class="breadcrumb-item "><a href="../../index.html">PhpSpec</a></li>
+    <li class="breadcrumb-item "><a href="../index.html">Config</a></li>
+    <li class="breadcrumb-item "><a href="index.html">Builder</a></li>
+    <li class="breadcrumb-item active">MutationConfigBuilder.php</li>
+</ol>
+
+                </div>
+            </div>
 
             <div class="row">
-    <div class="col-lg-12 table-padding">
-        <table class="table table-report table-bordered table-hover table-no-top">
-            <thead>
-            <tr>
-                <th class="directory-name-title"><div><span>File / Directory</span></div></th>
-                <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
-                <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
-                <th colspan="2"><div><span>Covered Code MSI</span></div></th>
-                <th class="rotate text-center"><div><span># Killed</span></div></th>
-                <th class="rotate text-center"><div><span># Escaped</span></div></th>
-                <th class="rotate text-center"><div><span># Timeout</span></div></th>
-                <th class="rotate text-center"><div><span># No coverage</span></div></th>
-                <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
-                <th class="rotate text-center"><div><span>Total detected</span></div></th>
-                <th class="rotate text-center"><div><span>Total undetected</span></div></th>
-                <th class="rotate text-center"><div><span>Total mutants</span></div></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-    <td>MutationConfigBuilder.php</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">50%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-success">100%</td>
-    <td>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;"></div>
-        </div>
-    </td>
-    <td class="text-center score text-warning">50%</td>
-    <td class="text-center">3</td>
-    <td class="text-center">3</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <td class="text-center">0</td>
-    <th class="text-center">3</th>
-    <th class="text-center">3</th>
-    <th class="text-center">6</th>
-</tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-            <div class="row">
-    <div class="col-lg-7">
-        <pre><code class="lang-php">&lt;?php
-/**
- * This code is licensed under the BSD 3-Clause License.
- *
- * Copyright (c) 2017-2018, Maks Rafalko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * * Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-declare(strict_types=1);
-
-namespace Infection\TestFramework\PhpSpec\Config\Builder;
-
-use Infection\Mutant\MutantInterface;
-use Infection\TestFramework\Config\MutationConfigBuilder as ConfigBuilder;
-use Infection\TestFramework\PhpSpec\Config\MutationYamlConfiguration;
-use Symfony\Component\Yaml\Yaml;
-
-/**
- * @internal
- */
-class MutationConfigBuilder extends ConfigBuilder
-{
-    /**
-     * @var string
-     */
-    private $tempDirectory;
-
-    /**
-     * @var string
-     */
-    private $originalYamlConfigPath;
-    /**
-     * @var string
-     */
-    private $projectDir;
-
-    public function __construct(string $tempDirectory, string $originalYamlConfigPath, string $projectDir)
-    {
-        $this-&gt;tempDirectory = $tempDirectory;
-        $this-&gt;originalYamlConfigPath = $originalYamlConfigPath;
-        $this-&gt;projectDir = $projectDir;
-    }
-
-    public function build(MutantInterface $mutant): string
-    {
-        $customAutoloadFilePath = sprintf(
-            '%s/interceptor.phpspec.autoload.%s.infection.php',
-            $this-&gt;tempDirectory,
-            $mutant-&gt;getMutation()-&gt;getHash()
-        );
-
-        $parsedYaml = Yaml::parseFile($this-&gt;originalYamlConfigPath);
-
-        file_put_contents($customAutoloadFilePath, $this-&gt;createCustomAutoloadWithInterceptor($mutant, $parsedYaml));
-
-        $yamlConfiguration = new MutationYamlConfiguration(
-            $this-&gt;tempDirectory,
-            $parsedYaml,
-            $customAutoloadFilePath
-        );
-
-        $newYaml = $yamlConfiguration-&gt;getYaml();
-
-        $path = $this-&gt;buildPath($mutant);
-
-        file_put_contents($path, $newYaml);
-
-        return $path;
-    }
-
-    private function createCustomAutoloadWithInterceptor(MutantInterface $mutant, array $parsedYaml): string
-    {
-        $originalFilePath = $mutant-&gt;getMutation()-&gt;getOriginalFilePath();
-        $mutatedFilePath = $mutant-&gt;getMutatedFilePath();
-
-        $originalBootstrap = $this-&gt;getOriginalBootstrapFilePath($parsedYaml);
-        $autoloadPlaceholder = $originalBootstrap ? &quot;require_once '{$originalBootstrap}';&quot; : '';
-        $interceptorPath = \dirname(__DIR__, 4) . '/StreamWrapper/IncludeInterceptor.php';
-
-        $customAutoload = &lt;&lt;&lt;AUTOLOAD
-&lt;?php
-
-%s
-%s
-
-AUTOLOAD;
-
-        return sprintf(
-            $customAutoload,
-            $autoloadPlaceholder,
-            $this-&gt;getInterceptorFileContent($interceptorPath, $originalFilePath, $mutatedFilePath)
-        );
-    }
-
-    private function buildPath(MutantInterface $mutant): string
-    {
-        $fileName = sprintf('phpspecConfiguration.%s.infection.yml', $mutant-&gt;getMutation()-&gt;getHash());
-
-        return $this-&gt;tempDirectory . '/' . $fileName;
-    }
-
-    /**
-     * @return string|null
-     */
-    private function getOriginalBootstrapFilePath(array $parsedYaml)
-    {
-        if (!array_key_exists('bootstrap', $parsedYaml)) {
-            return null;
-        }
-
-        return sprintf('%s/%s', $this-&gt;projectDir, $parsedYaml['bootstrap']);
-    }
-}
-</code></pre>
-    </div>
-     <div class="col-lg-5 table-padding">
-    <table class="table table-hover table-sm">
-        <thead>
+                <div class="col-12 table-padding">
+                    <table class="table table-report table-bordered table-hover table-no-top">
+    <thead>
+    <tr>
+        <th class="directory-name-title"><div><span>File / Directory</span></div></th>
+        <th colspan="2"><div><span>Mutation Score Indicator (MSI)</span></div></th>
+        <th colspan="2"><div><span>Mutation Code Coverage </span></div></th>
+        <th colspan="2"><div><span>Covered Code MSI</span></div></th>
+        <th class="rotate text-center"><div><span># Killed</span></div></th>
+        <th class="rotate text-center"><div><span># Escaped</span></div></th>
+        <th class="rotate text-center"><div><span># Timeout</span></div></th>
+        <th class="rotate text-center"><div><span># No coverage</span></div></th>
+        <th class="rotate text-center"><div><span># Runtime errors</span></div></th>
+        <th class="rotate text-center"><div><span>Total detected</span></div></th>
+        <th class="rotate text-center"><div><span>Total undetected</span></div></th>
+        <th class="rotate text-center"><div><span>Total mutants</span></div></th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-            <th>#</th>
-            <th>Mutator</th>
-            <th>State</th>
-            <th>Location</th>
-            <th>Original</th>
-            <th>Replacement</th>
+            <td>MutationConfigBuilder.php</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:50%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">50%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:100%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-success">100%</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:50%;"></div>
+                </div>
+            </td>
+            <td class="text-center score text-warning">
+                50%
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                0
+            </td>
+            <td class="text-center">
+                <strong>3</strong>
+            </td>
+            <td class="text-center">
+                <strong>3</strong>
+            </td>
+            <td class="text-center">
+                <strong>6</strong>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-            <tr>
-    <td><strong>0</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Escaped</td>
-    <td>91</td>
-</tr>
-<tr>
-    <td><strong>1</strong></td>
-    <td>IncrementInteger</td>
-    <td>Escaped</td>
-    <td>103</td>
-</tr>
-<tr>
-    <td><strong>2</strong></td>
-    <td>DecrementInteger</td>
-    <td>Escaped</td>
-    <td>103</td>
-</tr>
-<tr>
-    <td><strong>3</strong></td>
-    <td>FunctionCallRemoval</td>
-    <td>Killed</td>
-    <td>79</td>
-</tr>
-<tr>
-    <td><strong>4</strong></td>
-    <td>LogicalNot</td>
-    <td>Killed</td>
-    <td>132</td>
-</tr>
-<tr>
-    <td><strong>5</strong></td>
-    <td>FunctionCall</td>
-    <td>Killed</td>
-    <td>136</td>
-</tr>
-        </tbody>
-    </table>
-</div>
-</div>
+    </tbody>
+</table>
+                </div>
+            </div>
+
+            
 
             <div class="row">
-    <div class="col-lg-12">
-        <footer>
-            <hr>
-            <p>
-                <h4>Legend</h4>
-                <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
-                <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
-                <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
-            </p>
-            <p>
-                Generated with Infection dev-master. Visit the
-                <a href="https://infection.github.io/" target="_blank">Infection website</a>.
-            </p>
-        </footer>
-    </div>
-</div>
-
-            <script src="../../../../.js/highlight.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+                <div class="col-lg-12">
+                    <footer>
+    <hr>
+    <p>
+        <h4>Legend</h4>
+        <span class="bg-danger legend"><strong>Low:</strong> 0% to 50%</span>
+        <span class="bg-warning legend"><strong>Medium:</strong> 50% to 90%</span>
+        <span class="bg-success legend"><strong>High:</strong> 90% - 100%</span>
+    </p>
+    <p>
+        Generated with Infection dev-master. Visit the
+        <a href="https://infection.github.io/" target="_blank">Infection website</a>.
+    </p>
+</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>
